@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 260" width="480" height="260" fill="none">
+  <title>Peony — branch with sage leaves</title>
+  <defs>
+    <linearGradient id="p3-stem" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7A8C6E" stop-opacity="0.8"></stop>
+      <stop offset="100%" stop-color="#5D4030" stop-opacity="0.9"></stop>
+    </linearGradient>
+    <radialGradient id="p3-leaf-a" cx="50%" cy="50%" r="55%">
+      <stop offset="0%" stop-color="#A8BB99" stop-opacity="0.85"></stop>
+      <stop offset="100%" stop-color="#63755A" stop-opacity="0.55"></stop>
+    </radialGradient>
+    <radialGradient id="p3-leaf-b" cx="50%" cy="50%" r="55%">
+      <stop offset="0%" stop-color="#9AAE8C" stop-opacity="0.8"></stop>
+      <stop offset="100%" stop-color="#556547" stop-opacity="0.5"></stop>
+    </radialGradient>
+  </defs>
+  
+  <path d="M25,210 C110,190 200,170 300,145 C370,128 430,118 460,115" stroke="url(#p3-stem)" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.85"></path>
+  
+  <path d="M125,188 C135,165 150,140 170,120" stroke="#6E8060" stroke-width="2.5" fill="none" opacity="0.75"></path>
+  <path d="M240,160 C250,135 265,115 285,100" stroke="#6E8060" stroke-width="2.5" fill="none" opacity="0.75"></path>
+  <path d="M355,130 C370,150 380,175 385,200" stroke="#6E8060" stroke-width="2.5" fill="none" opacity="0.7"></path>
+  
+  <g>
+    <path d="M45,205 C20,225 10,205 25,185 C50,175 75,195 70,215 C60,230 50,225 45,205 Z" fill="url(#p3-leaf-a)"></path>
+    <path d="M160,115 C145,90 165,70 195,80 C210,90 210,115 190,125 C175,130 165,128 160,115 Z" fill="url(#p3-leaf-b)"></path>
+    <path d="M115,180 C95,195 80,180 90,160 C115,150 140,170 135,190 C125,200 118,198 115,180 Z" fill="url(#p3-leaf-a)" opacity="0.85"></path>
+    <path d="M280,90 C265,65 290,45 320,55 C335,65 335,90 315,100 C295,105 285,103 280,90 Z" fill="url(#p3-leaf-b)"></path>
+    <path d="M235,155 C215,170 200,155 210,135 C235,125 260,145 255,165 C245,175 238,173 235,155 Z" fill="url(#p3-leaf-a)" opacity="0.85"></path>
+    <path d="M385,205 C370,220 355,210 360,190 C380,180 405,195 400,215 C392,222 388,220 385,205 Z" fill="url(#p3-leaf-b)" opacity="0.85"></path>
+    <path d="M345,130 C335,105 355,85 385,95 C400,105 400,130 380,140 C365,145 355,143 345,130 Z" fill="url(#p3-leaf-a)"></path>
+    <path d="M445,115 C435,95 455,78 478,88 C482,95 480,112 465,120 C455,123 448,122 445,115 Z" fill="url(#p3-leaf-b)" opacity="0.8"></path>
+  </g>
+  
+  <ellipse cx="460" cy="115" rx="10" ry="7" fill="#B5768A" opacity="0.45"></ellipse>
+</svg>

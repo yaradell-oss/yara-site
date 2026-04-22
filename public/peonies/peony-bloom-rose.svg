@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480" width="480" height="480" fill="none">
+  <title>Peony — full bloom (dusty rose)</title>
+  <defs>
+    <radialGradient id="p1-core" cx="50%" cy="55%" r="42%">
+      <stop offset="0%" stop-color="#D9A5B3" stop-opacity="0.95"></stop>
+      <stop offset="55%" stop-color="#C48799" stop-opacity="0.82"></stop>
+      <stop offset="100%" stop-color="#9B5F74" stop-opacity="0.55"></stop>
+    </radialGradient>
+    <radialGradient id="p1-petal-outer" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#EBC8D2" stop-opacity="0.75"></stop>
+      <stop offset="70%" stop-color="#D6A3B2" stop-opacity="0.55"></stop>
+      <stop offset="100%" stop-color="#B5768A" stop-opacity="0.15"></stop>
+    </radialGradient>
+    <radialGradient id="p1-blush" cx="40%" cy="60%" r="45%">
+      <stop offset="0%" stop-color="#F2DBE1" stop-opacity="0.55"></stop>
+      <stop offset="100%" stop-color="#F2DBE1" stop-opacity="0"></stop>
+    </radialGradient>
+    <filter id="p1-soft" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="1.2"></feGaussianBlur>
+    </filter>
+  </defs>
+  <g filter="url(#p1-soft)">
+    
+    <ellipse cx="240" cy="250" rx="200" ry="180" fill="url(#p1-petal-outer)" opacity="0.55"></ellipse>
+    
+    <path d="M90,240 C70,160 160,80 250,95 C330,108 400,180 395,270 C390,350 310,415 220,405 C140,396 80,340 85,275 Z" fill="#D9ACBB" opacity="0.45"></path>
+    <path d="M130,130 C190,85 300,90 355,150 C400,200 390,285 345,335 C300,385 210,395 155,355 C100,315 80,235 130,130 Z" fill="#C89AAA" opacity="0.42"></path>
+    
+    <path d="M175,170 C225,140 295,145 335,195 C370,240 360,305 315,340 C270,375 200,370 170,335 C135,295 130,220 175,170 Z" fill="#B5768A" opacity="0.38"></path>
+    <path d="M150,220 C160,175 215,150 270,160 C320,170 350,215 345,265 C340,315 300,350 250,350 C185,352 135,305 150,220 Z" fill="#C3869A" opacity="0.4"></path>
+    
+    <ellipse cx="240" cy="258" rx="110" ry="95" fill="url(#p1-core)"></ellipse>
+    
+    <ellipse cx="195" cy="235" rx="60" ry="40" fill="url(#p1-blush)"></ellipse>
+    <ellipse cx="275" cy="205" rx="48" ry="30" fill="url(#p1-blush)" opacity="0.75"></ellipse>
+    
+    <path d="M235,260 C250,245 280,255 285,280 C288,300 265,315 245,305 C225,295 222,275 235,260 Z" fill="#7B4456" opacity="0.35"></path>
+    <path d="M215,280 C230,275 245,290 240,305 C235,318 218,318 210,305 C205,295 205,285 215,280 Z" fill="#8B5266" opacity="0.4"></path>
+  </g>
+  
+  <g opacity="0.55">
+    <circle cx="240" cy="250" r="2" fill="#7A8C6E"></circle>
+    <circle cx="252" cy="262" r="1.6" fill="#7A8C6E"></circle>
+    <circle cx="228" cy="268" r="1.6" fill="#7A8C6E"></circle>
+    <circle cx="244" cy="278" r="1.4" fill="#7A8C6E"></circle>
+    <circle cx="232" cy="252" r="1.4" fill="#7A8C6E"></circle>
+  </g>
+</svg>

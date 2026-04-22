@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 420" width="420" height="420" fill="none">
+  <title>Peony — open bloom (lavender variant)</title>
+  <defs>
+    <radialGradient id="pl-core" cx="50%" cy="55%" r="42%">
+      <stop offset="0%" stop-color="#B0A0C2" stop-opacity="0.95"></stop>
+      <stop offset="60%" stop-color="#7B6B8A" stop-opacity="0.78"></stop>
+      <stop offset="100%" stop-color="#5B4D6D" stop-opacity="0.5"></stop>
+    </radialGradient>
+    <radialGradient id="pl-outer" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#D8CEE0" stop-opacity="0.7"></stop>
+      <stop offset="100%" stop-color="#7B6B8A" stop-opacity="0.15"></stop>
+    </radialGradient>
+    <radialGradient id="pl-blush" cx="40%" cy="60%" r="45%">
+      <stop offset="0%" stop-color="#E8E1EE" stop-opacity="0.55"></stop>
+      <stop offset="100%" stop-color="#E8E1EE" stop-opacity="0"></stop>
+    </radialGradient>
+  </defs>
+  <g>
+    <ellipse cx="210" cy="220" rx="175" ry="160" fill="url(#pl-outer)" opacity="0.55"></ellipse>
+    <path d="M70,215 C55,140 140,65 225,80 C300,93 365,160 360,240 C355,310 285,370 200,360 C125,352 65,295 70,215 Z" fill="#B8A8C7" opacity="0.4"></path>
+    <path d="M110,115 C170,75 275,80 325,135 C365,180 360,260 320,305 C280,350 200,355 150,320 C100,285 85,215 110,115 Z" fill="#A698B7" opacity="0.4"></path>
+    <path d="M150,150 C200,120 265,125 300,170 C335,215 325,275 285,305 C245,335 185,335 160,305 C130,270 120,195 150,150 Z" fill="#8A7B9C" opacity="0.35"></path>
+    <ellipse cx="210" cy="228" rx="95" ry="80" fill="url(#pl-core)"></ellipse>
+    <ellipse cx="175" cy="210" rx="50" ry="34" fill="url(#pl-blush)"></ellipse>
+    <path d="M205,228 C220,214 245,224 250,245 C253,262 233,275 215,267 C200,260 198,242 205,228 Z" fill="#4F4360" opacity="0.35"></path>
+  </g>
+  <g opacity="0.55">
+    <circle cx="210" cy="222" r="1.8" fill="#7A8C6E"></circle>
+    <circle cx="220" cy="232" r="1.4" fill="#7A8C6E"></circle>
+    <circle cx="200" cy="238" r="1.4" fill="#7A8C6E"></circle>
+    <circle cx="215" cy="245" r="1.2" fill="#7A8C6E"></circle>
+  </g>
+</svg>

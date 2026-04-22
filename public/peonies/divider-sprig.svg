@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60" width="240" height="60" fill="none">
+  <title>Botanical divider — sage sprig, centered</title>
+  <g stroke="#7A8C6E" stroke-linecap="round" fill="none" opacity="0.85">
+    <path d="M120,48 C120,35 120,22 120,12" stroke-width="1.5"></path>
+    <path d="M120,40 C112,36 104,32 96,26" stroke-width="1"></path>
+    <path d="M120,34 C128,30 136,26 144,20" stroke-width="1"></path>
+    <path d="M120,28 C114,24 108,20 102,14" stroke-width="1"></path>
+    <path d="M120,22 C126,18 132,14 138,8" stroke-width="1"></path>
+  </g>
+  <g fill="#7A8C6E" opacity="0.75">
+    <ellipse cx="95" cy="25" rx="6" ry="3" transform="rotate(-25 95 25)"></ellipse>
+    <ellipse cx="145" cy="19" rx="6" ry="3" transform="rotate(25 145 19)"></ellipse>
+    <ellipse cx="101" cy="13" rx="5" ry="2.5" transform="rotate(-30 101 13)"></ellipse>
+    <ellipse cx="139" cy="7" rx="5" ry="2.5" transform="rotate(30 139 7)"></ellipse>
+  </g>
+  
+  <circle cx="120" cy="11" r="3" fill="#B5768A" opacity="0.55"></circle>
+</svg>
