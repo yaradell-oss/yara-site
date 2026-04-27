@@ -17,40 +17,7 @@ export interface Article {
   tone: ArticleTone;
 }
 
-export const ARTICLES: Article[] = [
-  {
-    id: "slow-broth",
-    kicker: "Кухня · 12 мин",
-    title: "Медленный бульон и время, которое его стоит",
-    italic: "время, которое его стоит",
-    lede: "о том, почему шесть часов — не много",
-    tone: "rose",
-  },
-  {
-    id: "morning-three-sips",
-    kicker: "Ритуал · 6 мин",
-    title: "Утро, которое выбирает вас",
-    italic: "выбирает вас",
-    lede: "три глотка тёплой воды и окно настежь",
-    tone: "sage",
-  },
-  {
-    id: "biohacking-without-noise",
-    kicker: "Биохимия · 18 мин",
-    title: "Биохакинг без шума",
-    italic: "без шума",
-    lede: "почему анализы — это чтение, а не диагноз",
-    tone: "lavender",
-  },
-  {
-    id: "women-forty",
-    kicker: "Письма · 9 мин",
-    title: "Женщины после сорока пишут первыми",
-    italic: "пишут первыми",
-    lede: "и задают вопросы, на которые двадцатилетним не приходит в голову",
-    tone: "rose",
-  },
-];
+export const ARTICLES: Article[] = [];
 
 function kickerColor(t: ArticleTone) {
   return {
@@ -62,6 +29,44 @@ function kickerColor(t: ArticleTone) {
 
 export function JournalList({ limit }: { limit?: number }) {
   const items = limit ? ARTICLES.slice(0, limit) : ARTICLES;
+
+  // Empty state — when there are no articles yet
+  if (items.length === 0) {
+    return (
+      <section style={{ padding: "120px 32px" }}>
+        <div style={{ maxWidth: 860, margin: "0 auto" }}>
+          <Kicker color="var(--rose)">Журнал</Kicker>
+          <h2
+            style={{
+              fontFamily: "var(--font-serif)",
+              fontWeight: 400,
+              fontSize: "clamp(2.2rem, 4vw, 3rem)",
+              lineHeight: 1.15,
+              color: "var(--ink)",
+              margin: "14px 0 24px",
+            }}
+          >
+            Скоро —{" "}
+            <em style={{ color: "var(--rose)", fontWeight: 500 }}>первые письма</em>.
+          </h2>
+          <p
+            style={{
+              fontFamily: "var(--font-serif)",
+              fontStyle: "italic",
+              fontSize: 20,
+              lineHeight: 1.6,
+              color: "var(--ink-soft)",
+              maxWidth: "52ch",
+              margin: 0,
+            }}
+          >
+            Журнал пока пустой — буду писать сюда раз в неделю, по воскресеньям. Чтобы не пропустить — оставь имя в форме внизу страницы.
+          </p>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section style={{ padding: "120px 32px" }}>
       <div style={{ maxWidth: 860, margin: "0 auto" }}>

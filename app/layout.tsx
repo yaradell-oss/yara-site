@@ -24,10 +24,55 @@ const raleway = Raleway({
   display: "swap",
 });
 
+const SITE_URL = "https://yara.dellight.ai";
+
 export const metadata: Metadata = {
-  title: "Яра Делл — медленная кухня и биохимия внимания",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "Яра Делл — медленная кухня и биохимия внимания",
+    template: "%s · Яра Делл",
+  },
   description:
     "Письма и программы для женщин, которым интересна биохимия собственного тела — без маркетинга и без спешки. Дубай.",
+  applicationName: "Яра Делл",
+  authors: [{ name: "Яра Делл" }],
+  keywords: [
+    "биохакинг",
+    "женское здоровье",
+    "медленная кухня",
+    "микробиота",
+    "перименопауза",
+    "программы питания",
+    "Дубай",
+  ],
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "ru_RU",
+    url: SITE_URL,
+    siteName: "Яра Делл",
+    title: "Яра Делл — медленная кухня и биохимия внимания",
+    description:
+      "Письма и программы для женщин, которым интересна биохимия собственного тела — без маркетинга и без спешки.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Яра Делл — медленная кухня и биохимия внимания",
+    description:
+      "Письма и программы для женщин, которым интересна биохимия собственного тела.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function RootLayout({

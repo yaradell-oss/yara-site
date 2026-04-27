@@ -25,7 +25,7 @@ export const PROGRAMS: Program[] = [
   {
     id: "blooming-garden",
     href: "/programs/blooming-garden",
-    kicker: "Сезон II · 21 день · весна",
+    kicker: "Сезон II · 21 день",
     title: "Цветущий сад",
     italicWord: "сад",
     lead:
@@ -36,13 +36,26 @@ export const PROGRAMS: Program[] = [
     rotation: -6,
   },
   {
+    id: "root-cleanse",
+    href: "/programs",
+    kicker: "Сезон III · 21 день · скоро",
+    title: "Корневое очищение",
+    italicWord: "очищение",
+    lead:
+      "Антипаразитарная программа на травах и специях. Без медикаментов, без жёстких чисток — мудрость травницы в твоей кухне. Старт 15 июня.",
+    wash: "var(--sage-wash)",
+    tone: "sage",
+    peony: "peony-branch-sage.svg",
+    rotation: 6,
+  },
+  {
     id: "flower-of-life",
     href: "/programs",
-    kicker: "Сезон I · 49 дней · осень",
+    kicker: "Сезон I · 28 дней (4 недели)",
     title: "Цветок жизни",
     italicWord: "жизни",
     lead:
-      "Длинная программа для тех, кто хочет перестроить привычки, а не протестировать их. Сон, свет, тарелка, тишина — по-порядку.",
+      "Программа для тех, кто хочет перестроить привычки, а не протестировать их. Сон, свет, тарелка, тишина — по-порядку.",
     wash: "var(--lavender-wash)",
     tone: "lavender",
     peony: "peony-bloom-lavender.svg",
@@ -55,10 +68,10 @@ export const PROGRAMS: Program[] = [
     title: "Частная кухня",
     italicWord: "кухня",
     lead:
-      "Приходу на вашу кухню. Разберём холодильник, переработаем завтраки и составим меню на неделю, которое вам действительно нравится.",
-    wash: "var(--sage-wash)",
-    tone: "sage",
-    peony: "peony-branch-sage.svg",
+      "Приду на вашу кухню. Разберём холодильник, переработаем завтраки и составим меню на неделю, которое вам действительно нравится.",
+    wash: "var(--rose-wash)",
+    tone: "rose",
+    peony: "peony-bloom-rose.svg",
     rotation: -10,
   },
 ];
