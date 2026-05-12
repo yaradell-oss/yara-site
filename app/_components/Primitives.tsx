@@ -56,25 +56,35 @@ export function Pill({
     display: "inline-flex",
     alignItems: "center",
     gap: 10,
-    fontFamily: "var(--font-serif)",
-    fontStyle: "italic",
+    fontFamily: "var(--font-label)",
+    fontStyle: "normal",
     fontWeight: 500,
-    fontSize: "1rem",
-    padding: "13px 26px",
-    borderRadius: 999,
-    border: "none",
+    fontSize: "0.78rem",
+    letterSpacing: "0.2em",
+    textTransform: "uppercase",
+    padding: "12px 18px",
+    borderRadius: "var(--radius-pill)",
+    border: "1px solid color-mix(in oklch, var(--ink), transparent 68%)",
     cursor: "pointer",
     textDecoration: "none",
     transition:
-      "background var(--dur-fast) var(--ease-editorial), color var(--dur-fast) var(--ease-editorial), transform var(--dur-fast) var(--ease-editorial)",
+      "border-color var(--dur-fast) var(--ease-editorial), color var(--dur-fast) var(--ease-editorial), transform var(--dur-fast) var(--ease-editorial)",
   };
   const variants: Record<PillVariant, CSSProperties> = {
-    primary: { background: "var(--lavender)", color: "var(--cream)" },
-    rose: { background: "var(--rose)", color: "var(--cream)" },
+    primary: {
+      background: "var(--lavender)",
+      color: "var(--cream)",
+      borderColor: "var(--lavender)",
+    },
+    rose: {
+      background: "var(--rose)",
+      color: "var(--cream)",
+      borderColor: "var(--rose)",
+    },
     ghost: {
       background: "transparent",
       color: "var(--ink)",
-      boxShadow: "inset 0 0 0 1px rgba(93,64,48,0.35)",
+      borderColor: "rgba(61,53,48,0.22)",
     },
   };
 
@@ -121,7 +131,7 @@ export function DividerSprig({
     <div style={{ display: "flex", justifyContent: "center", padding: "48px 0" }}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="/peonies/divider-sprig.svg"
+        src="/peonies/yara-divider-peony.png"
         style={{ width, opacity }}
         alt=""
         aria-hidden
@@ -212,6 +222,7 @@ export function PeonyFloat({
     transform: `rotate(${rotate}deg)`,
     zIndex: z,
     filter: `drop-shadow(0 18px 36px rgba(93,64,48,${0.22 * opacity}))`,
+    mixBlendMode: "multiply",
     pointerEvents: "none",
     ...(drift ? ({ ["--peony-rot" as string]: `${rotate}deg` } as CSSProperties) : {}),
   };

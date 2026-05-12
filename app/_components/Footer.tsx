@@ -17,7 +17,7 @@ export default function Footer() {
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="/peonies/divider-sprig.svg"
+        src="/peonies/yara-divider-peony.png"
         style={{ width: 180, opacity: 0.75 }}
         alt=""
         aria-hidden
@@ -40,9 +40,12 @@ export default function Footer() {
       </div>
 
       <div
+        className="footer-links"
         style={{
           marginTop: 40,
           display: "inline-flex",
+          flexWrap: "wrap",
+          justifyContent: "center",
           gap: 32,
           fontFamily: "var(--font-label)",
           fontWeight: 500,
@@ -58,6 +61,12 @@ export default function Footer() {
         <a href="https://instagram.com/" style={{ color: "inherit" }}>
           Instagram
         </a>
+        <Link href="/pricing" style={{ color: "inherit" }}>
+          Доступ
+        </Link>
+        <Link href="/account" style={{ color: "inherit" }}>
+          Кабинет
+        </Link>
         <Link href="/contact" style={{ color: "inherit" }}>
           Письмо
         </Link>

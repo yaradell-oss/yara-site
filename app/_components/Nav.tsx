@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Pill } from "./Primitives";
 
 /* ============================================================
    Nav — sticky editorial header. Server component.
@@ -7,9 +6,10 @@ import { Pill } from "./Primitives";
 
 const ITEMS: ReadonlyArray<[string, string]> = [
   ["/programs", "Программы"],
+  ["/pricing", "Доступ"],
+  ["/library", "Библиотека"],
+  ["/concierge", "Agatha"],
   ["/philosophy", "Философия"],
-  ["/journal", "Журнал"],
-  ["/contact", "Контакт"],
 ];
 
 export default function Nav() {
@@ -19,13 +19,14 @@ export default function Nav() {
         position: "sticky",
         top: 0,
         zIndex: 50,
-        background: "rgba(250,248,245,0.92)",
+        background: "rgba(255,253,248,0.9)",
         backdropFilter: "saturate(1) blur(6px)",
         WebkitBackdropFilter: "saturate(1) blur(6px)",
-        borderBottom: "1px solid rgba(93,64,48,0.08)",
+        borderBottom: "1px solid color-mix(in oklch, var(--plum), transparent 86%)",
       }}
     >
       <div
+        className="nav-shell"
         style={{
           maxWidth: 1240,
           margin: "0 auto",
@@ -37,24 +38,21 @@ export default function Nav() {
         }}
       >
         <Link
+          className="nav-brand"
           href="/"
           style={{
             fontFamily: "var(--font-serif)",
             fontStyle: "italic",
-            fontSize: 26,
+            fontSize: 34,
             color: "var(--ink)",
-            letterSpacing: "0.01em",
+            letterSpacing: 0,
+            whiteSpace: "nowrap",
           }}
         >
           Яра Делл
         </Link>
 
         <div
-          style={{
-            display: "flex",
-            gap: 32,
-            alignItems: "center",
-          }}
           className="nav-links"
         >
           {ITEMS.map(([href, label]) => (
@@ -62,11 +60,12 @@ export default function Nav() {
               key={href}
               href={href}
               style={{
-                fontFamily: "var(--font-label)",
+                fontFamily: "var(--font-display)",
+                fontStyle: "italic",
                 fontWeight: 500,
-                fontSize: 11,
-                letterSpacing: "0.3em",
-                textTransform: "uppercase",
+                fontSize: 18,
+                letterSpacing: 0,
+                textTransform: "none",
                 color: "var(--ink)",
                 padding: "6px 2px",
                 borderBottom: "1px solid transparent",
@@ -79,9 +78,22 @@ export default function Nav() {
           ))}
         </div>
 
-        <Pill as="a" href="/contact" variant="primary">
-          Записаться
-        </Pill>
+        <Link
+          href="/account"
+          style={{
+            fontFamily: "var(--font-label)",
+            fontSize: 11,
+            fontWeight: 500,
+            letterSpacing: "0.2em",
+            textTransform: "uppercase",
+            color: "var(--rose-deep)",
+            borderBottom: "1px solid color-mix(in oklch, var(--rose), transparent 45%)",
+            paddingBottom: 4,
+            whiteSpace: "nowrap",
+          }}
+        >
+          Кабинет
+        </Link>
       </div>
     </nav>
   );

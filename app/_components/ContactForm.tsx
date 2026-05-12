@@ -20,7 +20,7 @@ export default function ContactForm() {
     fontFamily: "var(--font-serif)",
     fontSize: 17,
     padding: "14px 22px",
-    borderRadius: 999,
+    borderRadius: 3,
     background: "rgba(255,255,255,0.6)",
     border: "1px solid rgba(93,64,48,0.18)",
     color: "var(--ink)",
@@ -31,12 +31,16 @@ export default function ContactForm() {
 
   return (
     <section
-      style={{ padding: "140px 32px 80px", position: "relative" }}
+      style={{
+        padding: "140px 32px 80px",
+        position: "relative",
+        overflow: "hidden",
+      }}
     >
       <PeonyFloat
-        src="/peonies/peony-bloom-rose.svg"
-        width={420}
-        right={-120}
+        src="/peonies/yara-peony-single-alpha.png"
+        width={220}
+        right={36}
         top={80}
         opacity={0.25}
         rotate={-6}
@@ -118,7 +122,7 @@ export default function ContactForm() {
             <textarea
               style={{
                 ...inputStyle,
-                borderRadius: 22,
+                borderRadius: 3,
                 minHeight: 160,
                 resize: "vertical",
                 padding: "18px 22px",

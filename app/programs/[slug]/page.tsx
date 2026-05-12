@@ -3,6 +3,7 @@ import Footer from "../../_components/Footer";
 import Nav from "../../_components/Nav";
 import NewsletterBand from "../../_components/NewsletterBand";
 import {
+  ProgramCommerceSection,
   ProgramDetailHero,
   WEEKS,
   WeekRow,
@@ -10,7 +11,7 @@ import {
 
 /* ============================================================
    Dynamic program detail page. Currently only "blooming-garden"
-   (a.k.a. Цветущий сад) is fully designed — other programs 404
+   (Цветущий Сад · Сезон 2) is fully designed — other programs 404
    here until their content lands.
 
    We use a Latin slug for the URL because Next.js 16's static-
@@ -33,9 +34,9 @@ export async function generateMetadata({
   const { slug } = await params;
   if (slug === "blooming-garden") {
     return {
-      title: "Цветущий сад — программа, Яра Делл",
+      title: "Цветущий Сад · Сезон 2 — Яра Делл",
       description:
-        "Двадцать один день внимания к себе. Три недели — по одной на каждую весну, которая живёт внутри.",
+        "Авторская программа Яры Делл: двадцать один день микробиоты, рецептов и ритуалов.",
     };
   }
   return { title: "Программа — Яра Делл" };
@@ -56,6 +57,7 @@ export default async function ProgramDetailPage({
       <Nav />
       <main>
         <ProgramDetailHero />
+        <ProgramCommerceSection />
         {WEEKS.map((week, i) => (
           <WeekRow key={week.num} week={week} index={i} />
         ))}

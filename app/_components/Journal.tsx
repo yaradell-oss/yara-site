@@ -152,8 +152,8 @@ export function JournalHeader() {
   return (
     <header style={{ padding: "140px 32px 40px", position: "relative" }}>
       <PeonyFloat
-        src="/peonies/peony-branch-sage.svg"
-        width={520}
+        src="/peonies/yara-peony-branch-alpha.png"
+        width={320}
         right={-60}
         top={90}
         opacity={0.4}

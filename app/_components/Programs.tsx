@@ -15,51 +15,59 @@ export interface Program {
   title: string;
   italicWord: string;
   lead: string;
+  commercial: string;
+  state: string;
   wash: string;
   tone: ProgramTone;
-  peony: string;
   rotation: number;
+  seasonMark: string;
 }
 
 export const PROGRAMS: Program[] = [
   {
     id: "blooming-garden",
     href: "/programs/blooming-garden",
-    kicker: "Сезон II · 21 день",
-    title: "Цветущий сад",
-    italicWord: "сад",
+    kicker: "Текущий запуск · 21 день",
+    title: "Цветущий Сад",
+    italicWord: "Сад",
     lead:
-      "Двадцать один день внимания к себе — утренние ритуалы, медленная кухня и биохимия, объяснённая так, как объясняют друзьям.",
+      "Двадцать один день внимания к микробиоте: утренние ритуалы, медленная кухня и биохимия, объяснённая человеческим языком.",
+    commercial: "Первый коммерческий сезон платформы: checkout, библиотека, Agatha concierge.",
+    state: "доступ открыт после оплаты",
     wash: "var(--rose-wash)",
     tone: "rose",
-    peony: "peony-bloom-rose.svg",
     rotation: -6,
+    seasonMark: "II",
   },
   {
     id: "root-cleanse",
-    href: "/programs",
-    kicker: "Сезон III · 21 день · скоро",
+    href: "/pricing",
+    kicker: "Будущий запуск · скоро",
     title: "Корневое очищение",
     italicWord: "очищение",
     lead:
       "Антипаразитарная программа на травах и специях. Без медикаментов, без жёстких чисток — мудрость травницы в твоей кухне. Старт 15 июня.",
+    commercial: "Будущий запуск: лист ожидания, прогрев, ранний доступ.",
+    state: "скоро",
     wash: "var(--sage-wash)",
     tone: "sage",
-    peony: "peony-branch-sage.svg",
     rotation: 6,
+    seasonMark: "III",
   },
   {
     id: "flower-of-life",
-    href: "/programs",
-    kicker: "Сезон I · 28 дней (4 недели)",
-    title: "Цветок жизни",
-    italicWord: "жизни",
+    href: "/pricing",
+    kicker: "Архив · ранние программы",
+    title: "Архив Яры",
+    italicWord: "Яры",
     lead:
       "Программа для тех, кто хочет перестроить привычки, а не протестировать их. Сон, свет, тарелка, тишина — по-порядку.",
+    commercial: "Evergreen-архив: старшие материалы с постоянной ценностью.",
+    state: "архивный слой",
     wash: "var(--lavender-wash)",
     tone: "lavender",
-    peony: "peony-bloom-lavender.svg",
     rotation: 8,
+    seasonMark: "I",
   },
   {
     id: "private-kitchen",
@@ -69,10 +77,12 @@ export const PROGRAMS: Program[] = [
     italicWord: "кухня",
     lead:
       "Приду на вашу кухню. Разберём холодильник, переработаем завтраки и составим меню на неделю, которое вам действительно нравится.",
+    commercial: "Премиальный офлайн-слой: заявка, handoff и персональное согласование.",
+    state: "Дубай · по запросу",
     wash: "var(--rose-wash)",
     tone: "rose",
-    peony: "peony-bloom-rose.svg",
     rotation: -10,
+    seasonMark: "D",
   },
 ];
 
@@ -86,26 +96,48 @@ export function ProgramRow({
   const flipped = index % 2 === 1;
 
   const words = program.title.split(" ");
+  const edgeSrc =
+    program.id === "root-cleanse"
+      ? "/peonies/yara-peony-branch-alpha.png"
+      : program.id === "blooming-garden"
+        ? "/peonies/yara-peony-single-alpha.png"
+        : "/peonies/yara-peony-bud-alpha.png";
 
   return (
     <article
+      className={`program-flow program-flow-${program.tone} ${
+        flipped ? "is-flipped" : ""
+      }`}
       style={{
-        background: program.wash,
-        padding: "120px 0",
+        padding: "64px 0",
         position: "relative",
         overflow: "hidden",
       }}
     >
+      <span className="program-watermark" aria-hidden>
+        {program.seasonMark}
+      </span>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        className="program-edge-peony"
+        src={edgeSrc}
+        alt=""
+        aria-hidden
+      />
       <div
+        className="program-row-grid"
         style={{
           maxWidth: 1240,
           margin: "0 auto",
           padding: "0 32px",
           display: "grid",
-          gridTemplateColumns: flipped ? "1fr 1.1fr" : "1.1fr 1fr",
-          gap: 64,
+          ["--program-grid" as string]: flipped ? "1fr 1.1fr" : "1.1fr 1fr",
+          gridTemplateColumns: "var(--program-grid)",
+          gap: 42,
           alignItems: "center",
           direction: flipped ? "rtl" : "ltr",
+          position: "relative",
+          zIndex: 2,
         }}
       >
         <div style={{ direction: "ltr" }}>
@@ -114,10 +146,10 @@ export function ProgramRow({
             style={{
               fontFamily: "var(--font-serif)",
               fontWeight: 400,
-              fontSize: "clamp(3rem, 5.5vw, 4.5rem)",
+              fontSize: "clamp(2.5rem, 4.2vw, 3.6rem)",
               lineHeight: 1.08,
               color: "var(--ink)",
-              margin: "18px 0 24px",
+              margin: "14px 0 16px",
             }}
           >
             {words.map((w, i) => {
@@ -140,39 +172,63 @@ export function ProgramRow({
             style={{
               fontFamily: "var(--font-serif)",
               fontStyle: "italic",
-              fontSize: 20,
-              lineHeight: 1.6,
+              fontSize: 18,
+              lineHeight: 1.5,
               color: "var(--ink)",
               maxWidth: "46ch",
-              margin: "0 0 32px",
+              margin: "0 0 18px",
             }}
           >
             {program.lead}
           </p>
+          <div
+            style={{
+              display: "grid",
+              gap: 10,
+              marginBottom: 22,
+              maxWidth: "48ch",
+              fontFamily: "var(--font-serif)",
+              fontSize: 18,
+              lineHeight: 1.5,
+              color: "var(--ink)",
+            }}
+          >
+            <div>— {program.commercial}</div>
+            <div style={{ color: "var(--ink-soft)" }}>— {program.state}</div>
+          </div>
           <Pill as="a" href={program.href} variant="primary">
             Подробнее
           </Pill>
         </div>
 
         <div
+          className="program-art"
           style={{
             direction: "ltr",
             position: "relative",
-            minHeight: 420,
+            minHeight: 230,
           }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={`/peonies/${program.peony}`}
+            className="program-peony"
+            src={
+              program.id === "blooming-garden"
+                ? "/peonies/yara-peony-single-alpha.png"
+                : program.id === "root-cleanse"
+                  ? "/peonies/yara-peony-branch-alpha.png"
+                  : "/peonies/yara-peony-bud-alpha.png"
+            }
             alt=""
             aria-hidden
             style={{
               position: "absolute",
-              width: "110%",
+              width: program.id === "root-cleanse" ? "76%" : "60%",
               top: "50%",
               left: "50%",
               transform: `translate(-50%, -50%) rotate(${program.rotation}deg)`,
               opacity: 0.9,
+              mixBlendMode: "multiply",
               filter: "drop-shadow(0 24px 48px rgba(93,64,48,0.22))",
             }}
           />
@@ -184,36 +240,36 @@ export function ProgramRow({
 
 export function ProgramsHeader() {
   return (
-    <header style={{ padding: "140px 32px 80px" }}>
+    <header style={{ padding: "72px 32px 36px" }}>
       <div style={{ maxWidth: 1240, margin: "0 auto" }}>
         <Kicker color="var(--rose)">Программы</Kicker>
-        <h1
+          <h1
           style={{
             fontFamily: "var(--font-serif)",
             fontWeight: 400,
-            fontSize: "clamp(3rem, 6vw, 5.5rem)",
+            fontSize: "clamp(2.8rem, 5vw, 4.7rem)",
             lineHeight: 1.05,
             color: "var(--ink)",
-            margin: "18px 0 0",
+            margin: "14px 0 0",
             maxWidth: "14ch",
           }}
         >
-          Три способа{" "}
-          <em style={{ color: "var(--rose)", fontWeight: 500 }}>начать</em>.
+          Программы{" "}
+          <em style={{ color: "var(--rose)", fontWeight: 500 }}>Яры</em>
         </h1>
         <p
           style={{
             fontFamily: "var(--font-serif)",
             fontStyle: "italic",
-            fontSize: 22,
+            fontSize: 19,
             lineHeight: 1.55,
             color: "var(--ink-soft)",
             maxWidth: "58ch",
             marginTop: 28,
           }}
         >
-          Сезонные программы и индивидуальные визиты. Каждая из них — о
-          внимании, не о дисциплине.
+          На верхнем уровне — Яра Делл и её авторская кухня. Внутри —
+          текущие сезоны, архивные материалы и будущие продуктовые слои.
         </p>
       </div>
     </header>

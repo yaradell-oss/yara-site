@@ -16,7 +16,7 @@ export default function NewsletterBand() {
     fontFamily: "var(--font-serif)",
     fontSize: 17,
     padding: "14px 24px",
-    borderRadius: 999,
+    borderRadius: 3,
     background: "rgba(255,255,255,0.65)",
     border: "1px solid rgba(93,64,48,0.22)",
     color: "var(--ink)",
@@ -29,25 +29,25 @@ export default function NewsletterBand() {
     <section
       style={{
         background: "var(--band-peach)",
-        padding: "140px 32px",
+        padding: "72px 32px",
         position: "relative",
         overflow: "hidden",
       }}
     >
       <PeonyFloat
-        src="/peonies/peony-bud-rose.svg"
-        width={220}
+        src="/peonies/yara-peony-bud-alpha.png"
+        width={140}
         left={80}
         bottom={60}
-        opacity={0.5}
+        opacity={0.28}
         rotate={-22}
       />
       <PeonyFloat
-        src="/peonies/peony-bloom-rose.svg"
-        width={420}
-        right={-80}
-        top={-60}
-        opacity={0.35}
+        src="/peonies/yara-peony-single-alpha.png"
+        width={220}
+        right={36}
+        top={0}
+        opacity={0.22}
         rotate={10}
       />
 

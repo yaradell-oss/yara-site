@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import { ClerkProvider } from "@clerk/nextjs";
 import { Cormorant_Garamond, Raleway } from "next/font/google";
 import "./globals.css";
+import { isClerkConfigured } from "../lib/platform/env";
 
 /**
  * Cormorant Garamond — the reading voice.
@@ -29,11 +31,11 @@ const SITE_URL = "https://yara.dellight.ai";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Яра Делл — медленная кухня и биохимия внимания",
+    default: "Яра Делл — кухня, микробиота и авторские программы",
     template: "%s · Яра Делл",
   },
   description:
-    "Письма и программы для женщин, которым интересна биохимия собственного тела — без маркетинга и без спешки. Дубай.",
+    "Авторские программы Яры Делл о вкусе, микробиоте, ритуалах и спокойной дисциплине кухни. Дубай.",
   applicationName: "Яра Делл",
   authors: [{ name: "Яра Делл" }],
   keywords: [
@@ -53,15 +55,15 @@ export const metadata: Metadata = {
     locale: "ru_RU",
     url: SITE_URL,
     siteName: "Яра Делл",
-    title: "Яра Делл — медленная кухня и биохимия внимания",
+    title: "Яра Делл — кухня, микробиота и авторские программы",
     description:
-      "Письма и программы для женщин, которым интересна биохимия собственного тела — без маркетинга и без спешки.",
+      "Авторские программы о вкусе, микробиоте, ритуалах и спокойной дисциплине кухни.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Яра Делл — медленная кухня и биохимия внимания",
+    title: "Яра Делл — кухня, микробиота и авторские программы",
     description:
-      "Письма и программы для женщин, которым интересна биохимия собственного тела.",
+      "Авторские программы о вкусе, микробиоте и спокойной дисциплине кухни.",
   },
   robots: {
     index: true,
@@ -78,7 +80,7 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  return (
+  const document = (
     <html
       lang="ru"
       className={`${cormorant.variable} ${raleway.variable}`}
@@ -86,4 +88,10 @@ export default function RootLayout({
       <body>{children}</body>
     </html>
   );
+
+  if (!isClerkConfigured()) {
+    return document;
+  }
+
+  return <ClerkProvider>{document}</ClerkProvider>;
 }

@@ -12,9 +12,10 @@
 :root {
   /* ---------- Color — exact brand hex ---------- */
   --cream: #FAF8F5;
-  --ink: #5D4030;
-  --ink-soft: #7A5C48;
-  --ink-muted: #A68E7D;
+  --ink: #3D3530;
+  --chocolate: #5D4030;
+  --ink-soft: #6B5F58;
+  --ink-muted: #9B8778;
 
   --lavender: #7B6B8A;
   --lavender-deep: #645676;
@@ -22,6 +23,11 @@
   --rose-deep: #9B5F74;
   --sage: #7A8C6E;
   --sage-deep: #63755A;
+  --plum: #3B2030;
+  --fig: #7C2540;
+  --chlorophyll: #B8C94A;
+  --marigold: #E0A12E;
+  --porcelain: #FFFDF8;
 
   --rose-wash: #F5ECE8;
   --lavender-wash: #EDEBF0;
@@ -51,6 +57,7 @@
   /* next/font injects --font-cormorant and --font-raleway in layout.tsx */
   --font-serif: var(--font-cormorant), "EB Garamond", Georgia, serif;
   --font-label: var(--font-raleway), "Helvetica Neue", Arial, sans-serif;
+  --font-display: var(--font-cormorant), "EB Garamond", Georgia, serif;
   --font-signature: "Snell Roundhand", "Segoe Script", "Lucida Handwriting", cursive;
 
   /* ---------- Type scale ---------- */
@@ -83,8 +90,8 @@
   --space-11: 192px;
 
   /* ---------- Radii ---------- */
-  --radius-pill: 999px;
-  --radius-soft: 4px;
+  --radius-pill: 3px;
+  --radius-soft: 3px;
   --radius-image: 2px;
 
   /* ---------- Shadows ---------- */
@@ -124,6 +131,7 @@
 
   --font-serif: var(--font-cormorant), "EB Garamond", Georgia, serif;
   --font-label: var(--font-raleway), "Helvetica Neue", Arial, sans-serif;
+  --font-display: var(--font-cormorant), "EB Garamond", Georgia, serif;
   --font-signature: "Snell Roundhand", "Segoe Script", "Lucida Handwriting", cursive;
 
   --radius-pill: 999px;
@@ -147,6 +155,12 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+::selection {
+  background: rgba(123, 107, 138, 0.22);
+  color: var(--ink);
 }
 
 *,
@@ -191,6 +205,13 @@ a {
     border-color var(--dur-fast) var(--ease-editorial);
 }
 
+main,
+main > section,
+article {
+  overflow-x: clip;
+  max-width: 100vw;
+}
+
 /* =============================================================
    Editorial container widths.
    ============================================================= */
@@ -210,6 +231,166 @@ a {
   padding: 0 32px;
 }
 
+.nav-links {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.commercial-hero-grid > *,
+.feature-split > * {
+  min-width: 0;
+}
+
+.hero-portrait-shell {
+  position: relative;
+  min-height: 620px;
+  overflow: hidden;
+  border-radius: 3px;
+  background: var(--rose-wash);
+}
+
+.hero-portrait-shell img {
+  width: 100%;
+  height: 100%;
+  min-height: 620px;
+  object-fit: cover;
+  object-position: 44% center;
+  display: block;
+}
+
+.hero-portrait-shell::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(250,248,245,0.1) 0%, transparent 26%, rgba(250,248,245,0.16) 100%),
+    linear-gradient(180deg, transparent 58%, rgba(61,53,48,0.16) 100%);
+  pointer-events: none;
+}
+
+.hero-proof-rail {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(61, 53, 48, 0.16);
+}
+
+.editorial-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 14px;
+}
+
+.editorial-list li {
+  position: relative;
+  padding-left: 24px;
+}
+
+.editorial-list li::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  position: absolute;
+  left: 0;
+  top: 0.72em;
+  border-radius: 50%;
+  background: var(--rose);
+}
+
+.program-row-grid {
+  grid-template-columns: var(--program-grid);
+  direction: var(--program-direction);
+}
+
+.program-flow {
+  --flow-a: var(--rose-wash);
+  --flow-b: var(--porcelain);
+  --flow-c: var(--cream);
+  background:
+    linear-gradient(
+      118deg,
+      var(--flow-a) 0%,
+      var(--flow-a) 42%,
+      var(--flow-b) 42%,
+      var(--flow-b) 57%,
+      var(--flow-c) 57%,
+      var(--flow-c) 100%
+    );
+}
+
+.program-flow-rose {
+  --flow-a: #f7ece8;
+  --flow-b: #fffaf5;
+  --flow-c: #f4e1d9;
+}
+
+.program-flow-sage {
+  --flow-a: #eef2eb;
+  --flow-b: #fffdf8;
+  --flow-c: #e5ecdf;
+}
+
+.program-flow-lavender {
+  --flow-a: #efedf3;
+  --flow-b: #fffdf8;
+  --flow-c: #e8e2ec;
+}
+
+.program-watermark {
+  position: absolute;
+  right: clamp(20px, 4vw, 72px);
+  top: clamp(10px, 4vw, 48px);
+  z-index: 0;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(8rem, 15vw, 17rem);
+  line-height: 0.75;
+  color: rgba(181, 118, 138, 0.12);
+  pointer-events: none;
+  max-width: calc(100% - 40px);
+}
+
+.program-flow.is-flipped .program-watermark {
+  right: auto;
+  left: clamp(20px, 4vw, 72px);
+  color: rgba(122, 140, 110, 0.13);
+}
+
+.program-edge-peony {
+  position: absolute;
+  width: clamp(190px, 22vw, 360px);
+  right: 48px;
+  bottom: 0;
+  z-index: 1;
+  opacity: 0.18;
+  mix-blend-mode: multiply;
+  transform: rotate(-16deg);
+  pointer-events: none;
+}
+
+.program-flow.is-flipped .program-edge-peony {
+  right: auto;
+  left: 48px;
+  top: 0;
+  bottom: auto;
+  transform: rotate(13deg);
+  opacity: 0.16;
+}
+
+.magazine-rule {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    var(--fig),
+    color-mix(in oklch, var(--chlorophyll), transparent 20%),
+    transparent
+  );
+}
+
 /* =============================================================
    Peony drift — barely-perceptible animation on hero peonies.
    ============================================================= */
@@ -224,5 +405,97 @@ a {
 @media (prefers-reduced-motion: reduce) {
   .peony-drift {
     animation: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .nav-shell {
+    padding: 14px 24px !important;
+  }
+
+  .nav-links {
+    display: none !important;
+  }
+
+  .nav-brand {
+    font-size: 24px !important;
+  }
+
+  .commercial-hero-grid,
+  .feature-split,
+  .program-row-grid {
+    --program-grid: 1fr !important;
+    grid-template-columns: var(--program-grid) !important;
+    gap: 42px !important;
+    direction: ltr !important;
+  }
+
+  .hero-portrait-shell,
+  .hero-portrait-shell img {
+    min-height: 440px;
+  }
+
+  .hero-proof-rail {
+    grid-template-columns: 1fr;
+  }
+
+  .program-art {
+    min-height: 180px !important;
+  }
+
+  .metric-strip {
+    grid-template-columns: 1fr !important;
+  }
+
+}
+
+@media (max-width: 640px) {
+  .hero-peony-branch {
+    width: 56vw !important;
+    right: -6vw !important;
+    top: -52px !important;
+  }
+
+  .hero-peony-bud {
+    width: 34vw !important;
+    left: -12vw !important;
+    bottom: -52px !important;
+  }
+
+  .program-peony {
+    width: 48vw !important;
+  }
+
+  .hero-portrait-shell,
+  .hero-portrait-shell img {
+    min-height: 330px;
+  }
+
+  .editorial-hero {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .container-editorial,
+  .container-narrow,
+  .container-reading {
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+
+  h1,
+  h2 {
+    overflow-wrap: anywhere;
+  }
+
+  form {
+    grid-template-columns: 1fr !important;
+  }
+
+  .footer-links {
+    display: flex !important;
+    width: 100% !important;
+    gap: 16px 22px !important;
+    letter-spacing: 0.18em !important;
   }
 }

@@ -7,13 +7,19 @@ import { Kicker, PeonyFloat, Signature } from "./Primitives";
 
 export function PhilosophyTeaser() {
   return (
-    <section style={{ padding: "160px 32px 120px", position: "relative" }}>
+    <section
+      style={{
+        padding: "72px 32px 64px",
+        position: "relative",
+        overflow: "hidden",
+      }}
+    >
       <PeonyFloat
-        src="/peonies/peony-bloom-lavender.svg"
-        width={520}
-        right={-80}
-        top={40}
-        opacity={0.22}
+        src="/peonies/yara-peony-single-alpha.png"
+        width={220}
+        right={36}
+        top={48}
+        opacity={0.16}
         rotate={-14}
       />
       <div
@@ -29,10 +35,10 @@ export function PhilosophyTeaser() {
           style={{
             fontFamily: "var(--font-serif)",
             fontWeight: 400,
-            fontSize: "clamp(2.6rem, 5vw, 4rem)",
+            fontSize: "clamp(2.3rem, 4vw, 3.4rem)",
             lineHeight: 1.1,
             color: "var(--ink)",
-            margin: "18px 0 28px",
+            margin: "14px 0 18px",
           }}
         >
           Тело — не проект, а{" "}
@@ -42,8 +48,8 @@ export function PhilosophyTeaser() {
           style={{
             fontFamily: "var(--font-serif)",
             fontStyle: "italic",
-            fontSize: 20,
-            lineHeight: 1.6,
+            fontSize: 18,
+            lineHeight: 1.5,
             color: "var(--ink)",
             maxWidth: "58ch",
             margin: "0 0 28px",
@@ -88,7 +94,7 @@ export function PhilosophyManifesto() {
       }}
     >
       <PeonyFloat
-        src="/peonies/peony-bloom-lavender.svg"
+        src="/peonies/yara-peony-single-alpha.png"
         width={640}
         left={-160}
         top={40}
@@ -96,7 +102,7 @@ export function PhilosophyManifesto() {
         rotate={-10}
       />
       <PeonyFloat
-        src="/peonies/peony-bloom-rose.svg"
+        src="/peonies/yara-peony-bud-alpha.png"
         width={520}
         right={-120}
         bottom={80}

@@ -1,127 +1,142 @@
-import { Kicker, PeonyFloat, Pill, PlaceholderPhoto } from "./Primitives";
+import { Pill } from "./Primitives";
 
-/* ============================================================
-   EditorialHero — magazine cover. Three-layer floating peonies.
-   ============================================================ */
+const HERO_MARKERS = [
+  ["21 день", "три недели: Корни, Ствол, Крона"],
+  ["микробиота", "рецепты, ферменты, ритуалы"],
+  ["Agatha", "ответы из доступных материалов"],
+] as const;
 
 export default function EditorialHero() {
   return (
     <section
+      className="editorial-hero"
       style={{
         position: "relative",
-        padding: "120px 0 140px",
-        overflow: "visible",
+        padding: "54px 0 36px",
+        overflow: "hidden",
+        background:
+          "linear-gradient(135deg, #FAF8F5 0%, #FFFDF9 48%, #F5ECE8 100%)",
       }}
     >
-      {/* floating peonies — three-layer rule */}
-      <PeonyFloat
-        src="/peonies/peony-bloom-rose.svg"
-        width={680}
-        right={-180}
-        top={-40}
-        opacity={0.82}
-        rotate={-8}
-        z={1}
-        drift
-      />
-      <PeonyFloat
-        src="/peonies/peony-bloom-lavender.svg"
-        width={420}
-        left={"35%"}
-        top={140}
-        opacity={0.28}
-        rotate={4}
-        z={0}
-      />
-      <PeonyFloat
-        src="/peonies/peony-bud-rose.svg"
-        width={180}
-        left={80}
-        bottom={40}
-        opacity={0.55}
-        rotate={-22}
-        z={2}
-      />
-
       <div
+        className="commercial-hero-grid"
         style={{
-          maxWidth: 1240,
+          maxWidth: 1340,
           margin: "0 auto",
           padding: "0 32px",
           display: "grid",
-          gridTemplateColumns: "1.2fr 1fr",
-          gap: 64,
+          gridTemplateColumns: "0.9fr 1.1fr",
+          gap: 48,
           position: "relative",
           zIndex: 3,
+          alignItems: "center",
         }}
       >
-        <div>
-          <Kicker color="var(--rose)">Письма · Дубай · сезон II</Kicker>
+        <div style={{ display: "grid", alignContent: "center", gap: 28 }}>
+          <div
+            style={{
+              fontFamily: "var(--font-label)",
+              fontSize: 12,
+              fontWeight: 500,
+              letterSpacing: "0.26em",
+              textTransform: "uppercase",
+              color: "var(--rose)",
+            }}
+          >
+            Яра Делл · Дубай
+          </div>
+
           <h1
             style={{
               fontFamily: "var(--font-serif)",
               fontWeight: 400,
-              fontSize: "clamp(4rem, 8vw, 7.5rem)",
-              lineHeight: 1.02,
-              letterSpacing: "-0.01em",
+              fontSize: "clamp(4rem, 8vw, 8rem)",
+              lineHeight: 0.9,
               color: "var(--ink)",
-              marginTop: 22,
-              marginBottom: 28,
-              maxWidth: "12ch",
+              margin: 0,
+              letterSpacing: 0,
+              maxWidth: "8.4ch",
             }}
           >
-            Медленное{" "}
-            <em style={{ color: "var(--rose)", fontWeight: 500 }}>утро</em>,
-            внятная кухня,
-            <br />
-            собственный{" "}
-            <em style={{ color: "var(--rose)", fontWeight: 500 }}>сад.</em>
+            Кухня,
+            <span
+              style={{
+                display: "block",
+                color: "var(--rose)",
+                fontFamily: "var(--font-serif)",
+                fontStyle: "italic",
+                fontWeight: 400,
+                letterSpacing: 0,
+              }}
+            >
+              которая
+            </span>
+            держит тело
           </h1>
 
           <p
             style={{
               fontFamily: "var(--font-serif)",
               fontStyle: "italic",
-              fontSize: 22,
-              lineHeight: 1.55,
+              fontSize: "clamp(1.25rem, 2vw, 1.7rem)",
+              lineHeight: 1.35,
               color: "var(--ink)",
-              maxWidth: "48ch",
-              margin: "0 0 40px",
+              maxWidth: "34ch",
+              margin: 0,
             }}
           >
-            Письма и программы для женщин, которым интересна биохимия
-            собственного тела — без маркетинга, без спешки и без розовых
-            подсластителей.
+            Авторские программы Яры Делл о вкусе, микробиоте и ежедневной
+            дисциплине без марафонной суеты.
           </p>
 
-          <div style={{ display: "flex", gap: 14, alignItems: "center", flexWrap: "wrap" }}>
-            <Pill as="a" href="/programs" variant="primary">
-              Посмотреть программы
+          <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+            <Pill as="a" href="/programs/blooming-garden" variant="primary">
+              Цветущий Сад
             </Pill>
-            <Pill as="a" href="/philosophy" variant="ghost">
-              О философии
+            <Pill as="a" href="/pricing" variant="ghost">
+              Открыть доступ
             </Pill>
+          </div>
+
+          <div className="hero-proof-rail">
+            {HERO_MARKERS.map(([label, body]) => (
+              <div key={label}>
+                <div
+                  style={{
+                    fontFamily: "var(--font-label)",
+                    fontWeight: 500,
+                    fontSize: 10.5,
+                    letterSpacing: "0.22em",
+                    textTransform: "uppercase",
+                    color: "var(--rose)",
+                    marginBottom: 8,
+                  }}
+                >
+                  {label}
+                </div>
+                <div
+                  style={{
+                    fontFamily: "var(--font-serif)",
+                    fontStyle: "italic",
+                    fontSize: 17,
+                    lineHeight: 1.35,
+                    color: "var(--ink-soft)",
+                  }}
+                >
+                  {body}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
-        <div style={{ position: "relative", alignSelf: "end" }}>
-          <PlaceholderPhoto aspect="4 / 5" tone="warm" />
-          <div
-            style={{
-              position: "absolute",
-              bottom: -18,
-              left: -18,
-              fontFamily: "var(--font-serif)",
-              fontStyle: "italic",
-              fontSize: 15,
-              color: "var(--ink-soft)",
-              background: "var(--cream)",
-              padding: "6px 14px",
-            }}
-          >
-            портрет · Дубай, март
-          </div>
-        </div>
+        <figure className="hero-portrait-shell" style={{ margin: 0 }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/generated/yara-editorial-hero-gpt-image-2.png"
+            alt="Яра Делл в светлой кухне с ботаническими деталями"
+          />
+        </figure>
       </div>
     </section>
   );
