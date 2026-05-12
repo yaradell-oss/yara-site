@@ -8,6 +8,7 @@ const ITEMS: ReadonlyArray<[string, string]> = [
   ["/programs", "Программы"],
   ["/pricing", "Доступ"],
   ["/library", "Библиотека"],
+  ["/videos", "Видео"],
   ["/concierge", "Agatha"],
   ["/philosophy", "Философия"],
 ];

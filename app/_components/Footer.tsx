@@ -64,6 +64,9 @@ export default function Footer() {
         <Link href="/pricing" style={{ color: "inherit" }}>
           Доступ
         </Link>
+        <Link href="/videos" style={{ color: "inherit" }}>
+          Видео
+        </Link>
         <Link href="/account" style={{ color: "inherit" }}>
           Кабинет
         </Link>
