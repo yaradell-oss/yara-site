@@ -2,7 +2,6 @@ import Footer from "../_components/Footer";
 import Nav from "../_components/Nav";
 import { Kicker, Pill } from "../_components/Primitives";
 import {
-  EditorialPanel,
   PlatformBand,
   PlatformGrid,
   PlatformHeader,
@@ -45,7 +44,10 @@ export default async function LibraryPage() {
             {PROGRAM_OFFERS.map((program) => {
               const allowed = canAccess(session, program.featureKey);
               return (
-                <EditorialPanel key={program.slug} tone={allowed ? "cream" : "rose"}>
+                <div
+                  key={program.slug}
+                  className={`library-access-card ${allowed ? "is-open" : "is-locked"}`}
+                >
                   <Kicker color={allowed ? "var(--sage)" : "var(--ink-soft)"}>
                     {allowed ? "доступ открыт" : "закрыто"}
                   </Kicker>
@@ -69,6 +71,13 @@ export default async function LibraryPage() {
                   >
                     {program.summary}
                   </p>
+                  {!allowed ? (
+                    <div aria-hidden style={{ marginTop: 22 }}>
+                      <span className="library-preview-slat" />
+                      <span className="library-preview-slat" />
+                      <span className="library-preview-slat" />
+                    </div>
+                  ) : null}
                   <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 20 }}>
                     <SoftTag>{program.duration}</SoftTag>
                     <SoftTag>{program.format}</SoftTag>
@@ -82,7 +91,7 @@ export default async function LibraryPage() {
                       </Pill>
                     )}
                   </div>
-                </EditorialPanel>
+                </div>
               );
             })}
           </PlatformGrid>

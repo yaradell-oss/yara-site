@@ -9,7 +9,7 @@ const HERO_MARKERS = [
 export default function EditorialHero() {
   return (
     <section
-      className="editorial-hero"
+      className="editorial-hero v3-motion-surface"
       style={{
         position: "relative",
         padding: "54px 0 36px",
@@ -18,6 +18,9 @@ export default function EditorialHero() {
           "linear-gradient(135deg, #FAF8F5 0%, #FFFDF9 48%, #F5ECE8 100%)",
       }}
     >
+      <div className="hero-botanical-field" aria-hidden />
+      <div className="hero-light-thread" aria-hidden />
+      <div className="v3-paper-grain" aria-hidden />
       <div
         className="commercial-hero-grid"
         style={{
@@ -32,7 +35,7 @@ export default function EditorialHero() {
           alignItems: "center",
         }}
       >
-        <div style={{ display: "grid", alignContent: "center", gap: 28 }}>
+        <div className="hero-copy-stage" style={{ display: "grid", alignContent: "center", gap: 28 }}>
           <div
             style={{
               fontFamily: "var(--font-label)",
@@ -136,6 +139,7 @@ export default function EditorialHero() {
             src="/generated/yara-editorial-hero-gpt-image-2.png"
             alt="Яра Делл в светлой кухне с ботаническими деталями"
           />
+          <span className="portrait-sheen" aria-hidden />
         </figure>
       </div>
     </section>

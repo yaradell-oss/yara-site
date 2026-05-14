@@ -83,6 +83,7 @@ export default function ConciergeClient() {
       }}
     >
       <div
+        aria-live="polite"
         style={{
           display: "grid",
           gap: 18,
@@ -96,6 +97,8 @@ export default function ConciergeClient() {
         {messages.map((message, index) => (
           <div
             key={`${message.role}-${index}`}
+            className="concierge-message"
+            data-role={message.role}
             style={{
               justifySelf: message.role === "user" ? "end" : "start",
               maxWidth: "78%",
@@ -112,7 +115,13 @@ export default function ConciergeClient() {
               whiteSpace: "pre-wrap",
             }}
           >
-            {message.content || "Agatha думает..."}
+            {message.content || (
+              <span className="concierge-thinking" aria-label="Agatha думает">
+                <span />
+                <span />
+                <span />
+              </span>
+            )}
           </div>
         ))}
       </div>

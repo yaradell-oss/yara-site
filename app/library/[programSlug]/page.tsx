@@ -3,7 +3,6 @@ import Footer from "../../_components/Footer";
 import Nav from "../../_components/Nav";
 import { Kicker, Pill } from "../../_components/Primitives";
 import {
-  EditorialPanel,
   PlatformBand,
   PlatformGrid,
   PlatformHeader,
@@ -76,7 +75,18 @@ export default async function ProgramLibraryPage({
               />
               <PlatformGrid min={300}>
                 {BLOOMING_GARDEN_DAYS.map((week) => (
-                  <EditorialPanel key={week.week} tone={week.tone as "rose" | "sage" | "lavender"}>
+                  <div
+                    key={week.week}
+                    className="library-access-card"
+                    style={{
+                      background:
+                        week.tone === "rose"
+                          ? "linear-gradient(145deg, rgba(245,236,232,0.78), rgba(255,253,248,0.7))"
+                          : week.tone === "sage"
+                            ? "linear-gradient(145deg, rgba(238,240,234,0.82), rgba(255,253,248,0.7))"
+                            : "linear-gradient(145deg, rgba(237,235,240,0.82), rgba(255,253,248,0.7))",
+                    }}
+                  >
                     <Kicker color="var(--sage)">{week.week}</Kicker>
                     <h2
                       style={{
@@ -106,7 +116,7 @@ export default async function ProgramLibraryPage({
                         <SoftTag key={day}>{day}</SoftTag>
                       ))}
                     </div>
-                  </EditorialPanel>
+                  </div>
                 ))}
               </PlatformGrid>
 
@@ -118,7 +128,7 @@ export default async function ProgramLibraryPage({
               />
               <PlatformGrid min={300}>
                 {content.map((item) => (
-                  <EditorialPanel key={item.id} tone="cream">
+                  <div key={item.id} className="library-access-card">
                     <Kicker color="var(--sage)">{item.type}</Kicker>
                     <h2
                       style={{
@@ -152,12 +162,12 @@ export default async function ProgramLibraryPage({
                     >
                       {item.sourceLabel}
                     </div>
-                  </EditorialPanel>
+                  </div>
                 ))}
               </PlatformGrid>
             </>
           ) : (
-            <EditorialPanel>
+            <div className="library-access-card is-locked">
               <p
                 style={{
                   fontFamily: "var(--font-serif)",
@@ -171,7 +181,12 @@ export default async function ProgramLibraryPage({
                 Превью показывает только структуру программы; сами материалы и
                 ответы Agatha остаются внутри подписки.
               </p>
-            </EditorialPanel>
+              <div aria-hidden style={{ marginTop: 24 }}>
+                <span className="library-preview-slat" />
+                <span className="library-preview-slat" />
+                <span className="library-preview-slat" />
+              </div>
+            </div>
           )}
         </PlatformBand>
       </main>

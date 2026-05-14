@@ -88,25 +88,25 @@ export default async function AccountPage() {
             lead="Для MVP достаточно трёх понятных входов: открыть программу, спросить Agatha, управлять оплатой. Остальное не должно шуметь."
           />
           <PlatformGrid min={260}>
-            <EditorialPanel tone="cream">
+            <div className="account-step-card">
               <InlineMetric label="шаг 1" value="Открыть библиотеку" />
               <div style={{ marginTop: 22 }}>
                 <TextLink href="/library">Перейти к материалам</TextLink>
               </div>
-            </EditorialPanel>
-            <EditorialPanel tone="cream">
+            </div>
+            <div className="account-step-card">
               <InlineMetric label="шаг 2" value="Задать вопрос" />
               <div style={{ marginTop: 22 }}>
                 <TextLink href="/concierge">Открыть Agatha concierge</TextLink>
               </div>
-            </EditorialPanel>
-            <EditorialPanel tone="cream">
+            </div>
+            <div className="account-step-card">
               <InlineMetric label="шаг 3" value="Оплата и доступ" />
               <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 22 }}>
                 <SoftTag>карта</SoftTag>
                 <SoftTag>ручная активация</SoftTag>
               </div>
-            </EditorialPanel>
+            </div>
           </PlatformGrid>
         </PlatformBand>
 

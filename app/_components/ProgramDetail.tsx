@@ -16,6 +16,7 @@ import {
 export function ProgramDetailHero() {
   return (
     <section
+      className="program-detail-hero v31-gloss-surface"
       style={{
         padding: "84px 0 52px",
         position: "relative",
@@ -187,7 +188,74 @@ export function ProgramCommerceSection() {
           </EditorialPanel>
         ))}
       </PlatformGrid>
+      <ProgramGrowthPath />
     </PlatformBand>
+  );
+}
+
+export function ProgramGrowthPath() {
+  const nodes = [
+    {
+      title: "Корни",
+      label: "1 неделя",
+      body: "Подготовка, желчный ритм, ферменты и первые устойчивые тарелки.",
+    },
+    {
+      title: "Ствол",
+      label: "2 неделя",
+      body: "Плотность вкуса, белок, полифенолы и блюда, которые держат день.",
+    },
+    {
+      title: "Крона",
+      label: "3 неделя",
+      body: "Лёгкость, ясность и финальная сборка привычек без марафонной суеты.",
+    },
+  ] as const;
+
+  return (
+    <div className="program-growth-path" aria-label="Ритм программы Цветущий Сад">
+      {nodes.map((node) => (
+        <div className="program-growth-node" key={node.title}>
+          <div
+            style={{
+              fontFamily: "var(--font-label)",
+              fontSize: 10.5,
+              fontWeight: 500,
+              letterSpacing: "0.24em",
+              textTransform: "uppercase",
+              color: "var(--rose)",
+              marginBottom: 10,
+            }}
+          >
+            {node.label}
+          </div>
+          <h3
+            style={{
+              fontFamily: "var(--font-serif)",
+              fontWeight: 400,
+              fontSize: "clamp(1.75rem, 2.6vw, 2.55rem)",
+              lineHeight: 1.08,
+              margin: "0 0 10px",
+              color: "var(--ink)",
+            }}
+          >
+            {node.title}
+          </h3>
+          <p
+            style={{
+              fontFamily: "var(--font-serif)",
+              fontStyle: "italic",
+              fontSize: 17,
+              lineHeight: 1.48,
+              margin: 0,
+              color: "var(--ink-soft)",
+            }}
+          >
+            {node.body}
+          </p>
+        </div>
+      ))}
+    </div>
   );
 }
 
@@ -244,6 +312,7 @@ export function WeekRow({ week, index }: { week: Week; index: number }) {
   };
   return (
     <section
+      className="program-week-band"
       style={{
         background: washes[week.tone],
         padding: "68px 0",

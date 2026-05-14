@@ -18,7 +18,7 @@ export function PlatformHeader({
   const parts = italic ? title.split(italic) : [title];
 
   return (
-    <header style={{ padding: "120px 32px 72px", position: "relative" }}>
+    <header className="v31-platform-header" style={{ padding: "120px 32px 72px", position: "relative" }}>
       <div style={{ maxWidth: 1240, margin: "0 auto" }}>
         <Kicker color="var(--rose)">{kicker}</Kicker>
         <h1
@@ -79,6 +79,7 @@ export function PlatformBand({
 
   return (
     <section
+      className={`v31-platform-band v31-band-${tone}`}
       style={{
         background: backgrounds[tone],
         padding: "64px 32px",
@@ -157,13 +158,13 @@ export function EditorialPanel({
   };
   return (
     <div
+      className={`v31-editorial-panel v31-panel-${tone}`}
       style={{
         background: backgrounds[tone],
-        borderTop: "1px solid rgba(93,64,48,0.18)",
-        borderBottom: tone === "cream" ? "1px solid rgba(93,64,48,0.08)" : "none",
-        borderRadius: 0,
-        padding: "28px 0 30px",
-        boxShadow: "none",
+        border: "1px solid rgba(93,64,48,0.13)",
+        borderRadius: "var(--radius-gloss)",
+        padding: "30px",
+        boxShadow: "var(--depth-gloss-soft)",
         ...style,
       }}
     >
@@ -272,12 +273,13 @@ export function TextLink({ href, children }: { href: string; children: ReactNode
 export function SoftTag({ children }: { children: ReactNode }) {
   return (
     <span
+      className="v31-soft-tag"
       style={{
         display: "inline-flex",
         alignItems: "center",
         minHeight: 34,
         padding: "6px 13px",
-        borderRadius: 3,
+        borderRadius: 999,
         background: "rgba(250,248,245,0.72)",
         border: "1px solid rgba(93,64,48,0.14)",
         color: "var(--ink)",

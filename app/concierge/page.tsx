@@ -35,9 +35,9 @@ export default async function ConciergePage() {
             lead="Agatha не заменяет Яру и не раздаёт закрытые материалы. Она помогает пройти программу, находит разрешённые источники и бережно поднимает сложные вопросы в админку."
           />
           <PlatformGrid min={320}>
-            <EditorialPanel tone="cream" style={{ padding: 24 }}>
+            <div className="concierge-shell">
               <ConciergeClient />
-            </EditorialPanel>
+            </div>
             <EditorialPanel tone="rose">
               <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 28 }}>
                 <SoftTag>по материалам</SoftTag>

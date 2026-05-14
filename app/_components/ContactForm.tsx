@@ -20,8 +20,8 @@ export default function ContactForm() {
     fontFamily: "var(--font-serif)",
     fontSize: 17,
     padding: "14px 22px",
-    borderRadius: 3,
-    background: "rgba(255,255,255,0.6)",
+    borderRadius: "var(--radius-gloss)",
+    background: "rgba(255,253,248,0.72)",
     border: "1px solid rgba(93,64,48,0.18)",
     color: "var(--ink)",
     outline: "none",
@@ -31,6 +31,7 @@ export default function ContactForm() {
 
   return (
     <section
+      className="contact-gloss-section"
       style={{
         padding: "140px 32px 80px",
         position: "relative",
@@ -46,6 +47,7 @@ export default function ContactForm() {
         rotate={-6}
       />
       <div
+        className="contact-gloss-shell"
         style={{
           maxWidth: 640,
           margin: "0 auto",
@@ -105,6 +107,7 @@ export default function ContactForm() {
             style={{ display: "flex", flexDirection: "column", gap: 14 }}
           >
             <input
+              className="contact-gloss-field"
               style={inputStyle}
               placeholder="Как к вам обращаться"
               value={form.name}
@@ -112,6 +115,7 @@ export default function ContactForm() {
               aria-label="Имя"
             />
             <input
+              className="contact-gloss-field"
               style={inputStyle}
               type="email"
               placeholder="Ваш e-mail"
@@ -120,9 +124,9 @@ export default function ContactForm() {
               aria-label="Email"
             />
             <textarea
+              className="contact-gloss-field"
               style={{
                 ...inputStyle,
-                borderRadius: 3,
                 minHeight: 160,
                 resize: "vertical",
                 padding: "18px 22px",

@@ -92,14 +92,14 @@ export function Pill({
 
   if (as === "a" || href) {
     return (
-      <a href={href} style={merged} onClick={onClick}>
+      <a className={`v31-pill v31-pill-${variant}`} href={href} style={merged} onClick={onClick}>
         {children}
       </a>
     );
   }
 
   return (
-    <button type={type || "button"} onClick={onClick} style={merged}>
+    <button className={`v31-pill v31-pill-${variant}`} type={type || "button"} onClick={onClick} style={merged}>
       {children}
     </button>
   );

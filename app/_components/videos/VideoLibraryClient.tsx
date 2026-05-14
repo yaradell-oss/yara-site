@@ -1,7 +1,9 @@
 "use client";
 
 import { ExternalLink, MousePointerClick, Search, SlidersHorizontal } from "lucide-react";
-import { useMemo, useState } from "react";
+import { LayoutGroup, motion } from "motion/react";
+import { useDeferredValue, useMemo, useState, useTransition } from "react";
+import { flushSync } from "react-dom";
 import type { VideoCategory, YaraVideo } from "../../../lib/youtube/videos";
 import { VIDEO_CATEGORIES, YOUTUBE_CHANNEL_URL } from "../../../lib/youtube/videos";
 
@@ -19,9 +21,11 @@ export default function VideoLibraryClient({ videos }: { videos: YaraVideo[] }) 
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState<"Все" | VideoCategory>("Все");
   const [sort, setSort] = useState<SortMode>("newest");
+  const [isPending, startTransition] = useTransition();
+  const deferredQuery = useDeferredValue(query);
 
   const filtered = useMemo(() => {
-    const needle = normalize(query);
+    const needle = normalize(deferredQuery);
     return videos
       .filter((video) => category === "Все" || video.category === category)
       .filter((video) => {
@@ -37,7 +41,17 @@ export default function VideoLibraryClient({ videos }: { videos: YaraVideo[] }) 
         ).includes(needle);
       })
       .sort((a, b) => sortVideos(a, b, sort));
-  }, [category, query, sort, videos]);
+  }, [category, deferredQuery, sort, videos]);
+
+  function transitionUpdate(update: () => void) {
+    if (document.startViewTransition) {
+      document.startViewTransition(() => flushSync(update));
+      return;
+    }
+    startTransition(update);
+  }
+
+  const searchNeedle = normalize(deferredQuery);
 
   return (
     <section className="video-workbench" aria-label="Видео Яры Делл">
@@ -46,14 +60,20 @@ export default function VideoLibraryClient({ videos }: { videos: YaraVideo[] }) 
           <Search size={18} strokeWidth={1.8} aria-hidden />
           <input
             value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            placeholder="Искать по названию, ингредиентам, описанию и транскрипту"
+            onChange={(event) => {
+              const next = event.target.value;
+              setQuery(next);
+            }}
+            placeholder="Поиск: блюдо, техника, транскрипт"
           />
         </label>
 
         <label className="video-sort">
           <SlidersHorizontal size={18} strokeWidth={1.8} aria-hidden />
-          <select value={sort} onChange={(event) => setSort(event.target.value as SortMode)}>
+          <select
+            value={sort}
+            onChange={(event) => transitionUpdate(() => setSort(event.target.value as SortMode))}
+          >
             {Object.entries(SORT_LABELS).map(([value, label]) => (
               <option key={value} value={value}>
                 {label}
@@ -69,29 +89,36 @@ export default function VideoLibraryClient({ videos }: { videos: YaraVideo[] }) 
             key={item}
             type="button"
             className={item === category ? "is-active" : undefined}
-            onClick={() => setCategory(item)}
+            onClick={() => transitionUpdate(() => setCategory(item))}
           >
             {item}
           </button>
         ))}
       </div>
 
-      <div className="video-result-line">
+      <div className="video-result-line" aria-live="polite">
         <span>{filtered.length} видео</span>
+        {isPending ? <span>перестраиваю подборку</span> : null}
         <a href={YOUTUBE_CHANNEL_URL} target="_blank" rel="noreferrer">
           открыть канал <ExternalLink size={14} strokeWidth={1.8} />
         </a>
       </div>
 
-      <div className="video-card-grid">
+      <LayoutGroup>
+        <motion.div className="video-card-grid" layout>
         {filtered.map((video) => (
-          <a
+          <motion.a
+            layout
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.42, ease: [0.19, 1, 0.22, 1] }}
             className="video-card"
             href={video.url}
             key={video.id}
             target="_blank"
             rel="noreferrer"
             aria-label={`Открыть видео: ${video.title}`}
+            style={{ ["--video-transition-name" as string]: `video-${video.id}` }}
           >
             <div className="video-thumb">
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -108,8 +135,8 @@ export default function VideoLibraryClient({ videos }: { videos: YaraVideo[] }) 
                 <span>{video.category}</span>
                 <span>{formatDate(video.publishedAt)}</span>
               </div>
-              <h2>{video.title}</h2>
-              <p>{excerpt(video.transcript, 210)}</p>
+              <h2>{highlightText(video.title, searchNeedle)}</h2>
+              <p>{highlightExcerpt(video.transcript, 210, searchNeedle)}</p>
               <div className="video-tag-row">
                 {video.tags.slice(0, 4).map((tag) => (
                   <span key={tag}>{tag}</span>
@@ -119,9 +146,10 @@ export default function VideoLibraryClient({ videos }: { videos: YaraVideo[] }) 
                 Поиск видит название, описание и индексируемый транскрипт.
               </div>
             </div>
-          </a>
+          </motion.a>
         ))}
-      </div>
+        </motion.div>
+      </LayoutGroup>
 
       {filtered.length === 0 ? (
         <div className="video-empty">
@@ -169,4 +197,28 @@ function excerpt(value: string, max: number) {
   const clean = value.replace(/\s+/g, " ").trim();
   if (clean.length <= max) return clean;
   return `${clean.slice(0, max).trim()}…`;
+}
+
+function highlightExcerpt(value: string, max: number, needle: string) {
+  return highlightText(excerpt(value, max), needle);
+}
+
+function highlightText(text: string, needle: string) {
+  if (!needle || needle.length < 2) return text;
+
+  const normalizedText = normalize(text);
+  const index = normalizedText.indexOf(needle);
+  if (index < 0) return text;
+
+  const before = text.slice(0, index);
+  const match = text.slice(index, index + needle.length);
+  const after = text.slice(index + needle.length);
+
+  return (
+    <>
+      {before}
+      <mark className="video-highlight">{match}</mark>
+      {after}
+    </>
+  );
 }
