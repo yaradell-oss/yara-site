@@ -55,34 +55,43 @@ export function Pill({
   const base: CSSProperties = {
     display: "inline-flex",
     alignItems: "center",
+    justifyContent: "center",
     gap: 10,
     fontFamily: "var(--font-label)",
     fontStyle: "normal",
     fontWeight: 500,
     fontSize: "0.78rem",
-    letterSpacing: "0.2em",
+    letterSpacing: "0.18em",
+    lineHeight: 1,
     textTransform: "uppercase",
-    padding: "12px 18px",
-    borderRadius: "var(--radius-pill)",
+    minHeight: 48,
+    padding: "14px 22px",
+    borderRadius: "999px",
     border: "1px solid color-mix(in oklch, var(--ink), transparent 68%)",
     cursor: "pointer",
     textDecoration: "none",
+    textAlign: "center",
+    userSelect: "none",
+    WebkitTapHighlightColor: "transparent",
     transition:
       "border-color var(--dur-fast) var(--ease-editorial), color var(--dur-fast) var(--ease-editorial), transform var(--dur-fast) var(--ease-editorial)",
   };
   const variants: Record<PillVariant, CSSProperties> = {
     primary: {
-      background: "var(--lavender)",
+      background:
+        "linear-gradient(145deg, color-mix(in oklch, var(--lavender), white 8%), color-mix(in oklch, var(--lavender), black 10%))",
       color: "var(--cream)",
       borderColor: "var(--lavender)",
     },
     rose: {
-      background: "var(--rose)",
+      background:
+        "linear-gradient(145deg, color-mix(in oklch, var(--rose), white 8%), color-mix(in oklch, var(--rose), black 10%))",
       color: "var(--cream)",
       borderColor: "var(--rose)",
     },
     ghost: {
-      background: "transparent",
+      background:
+        "linear-gradient(145deg, rgba(255, 253, 248, 0.72), rgba(255, 255, 255, 0.34))",
       color: "var(--ink)",
       borderColor: "rgba(61,53,48,0.22)",
     },
