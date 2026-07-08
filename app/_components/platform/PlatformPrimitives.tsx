@@ -295,10 +295,16 @@ export function SoftTag({ children }: { children: ReactNode }) {
   );
 }
 
-export function CheckoutButton({ label = "Открыть доступ" }: { label?: string }) {
+export function CheckoutButton({
+  label = "Открыть доступ",
+  programSlug = "taste-of-freedom",
+}: {
+  label?: string;
+  programSlug?: string;
+}) {
   return (
     <form action="/api/stripe/checkout" method="POST">
-      <input type="hidden" name="programSlug" value="blooming-garden-v2" />
+      <input type="hidden" name="programSlug" value={programSlug} />
       <Pill as="button" type="submit" variant="primary">
         {label}
       </Pill>

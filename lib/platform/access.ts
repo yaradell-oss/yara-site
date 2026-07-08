@@ -6,6 +6,11 @@ import { getSupabaseAdmin } from "./supabase";
 
 const PREVIEW_ENTITLEMENTS: Entitlement[] = [
   {
+    lookupKey: FEATURE_KEYS.tasteOfFreedom,
+    label: "Вкус свободы · Сезон 3",
+    active: true,
+  },
+  {
     lookupKey: FEATURE_KEYS.bloomingGardenV2,
     label: "Цветущий Сад · Сезон 2",
     active: true,

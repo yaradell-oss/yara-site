@@ -1,4 +1,5 @@
 export const FEATURE_KEYS = {
+  tasteOfFreedom: "program_taste_of_freedom",
   bloomingGardenV2: "program_blooming_garden_v2",
   evergreenLibrary: "library_evergreen",
   conciergeBasic: "concierge_basic",
@@ -25,6 +26,7 @@ export interface ProgramOffer {
   libraryHref: string;
   publicHref: string;
   includes: string[];
+  coverSrc?: string;
 }
 
 export interface ContentItem {

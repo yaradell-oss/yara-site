@@ -16,7 +16,7 @@ import { PROGRAM_OFFERS } from "../../lib/platform/catalog";
 export const metadata = {
   title: "Доступ и подписки — Яра Делл",
   description:
-    "Доступ к программе Цветущий Сад, библиотеке и Agatha concierge.",
+    "Доступ к программе Вкус свободы, библиотеке и Agatha concierge.",
 };
 
 export default function PricingPage() {
@@ -34,12 +34,28 @@ export default function PricingPage() {
         <PlatformBand tone="rose" style={{ paddingTop: 72 }}>
           <SectionIntro
             kicker="Запуск"
-            title="Первый запуск — Цветущий Сад"
-            lead="Один главный путь: купить Сезон 2, войти в личный кабинет и открыть библиотеку. Остальные уровни показаны как будущая архитектура, чтобы не размывать решение."
+            title="Текущий запуск — Вкус свободы"
+            lead="Один главный путь: купить Сезон 3, войти в личный кабинет и открыть библиотеку. Остальные уровни показаны как будущая архитектура, чтобы не размывать решение."
           />
           <PlatformGrid min={300}>
             {PROGRAM_OFFERS.map((offer) => (
               <EditorialPanel key={offer.slug} tone="cream">
+                {offer.coverSrc ? (
+                  /* eslint-disable-next-line @next/next/no-img-element */
+                  <img
+                    src={offer.coverSrc}
+                    alt=""
+                    aria-hidden
+                    style={{
+                      width: "100%",
+                      aspectRatio: "4 / 3",
+                      objectFit: "cover",
+                      borderRadius: "var(--radius-image)",
+                      boxShadow: "var(--shadow-card)",
+                      marginBottom: 22,
+                    }}
+                  />
+                ) : null}
                 <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 20 }}>
                   <SoftTag>{offer.status}</SoftTag>
                   <SoftTag>{offer.duration}</SoftTag>
@@ -98,8 +114,8 @@ export default function PricingPage() {
                     <li key={item}>— {item}</li>
                   ))}
                 </ul>
-                {offer.slug === "blooming-garden-v2" ? (
-                  <CheckoutButton />
+                {offer.status === "available" ? (
+                  <CheckoutButton programSlug={offer.slug} />
                 ) : (
                   <Pill as="a" href="/contact" variant="ghost">
                     В лист ожидания

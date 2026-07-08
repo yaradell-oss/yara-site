@@ -1,7 +1,7 @@
 import { Pill } from "./Primitives";
 
 const HERO_MARKERS = [
-  ["21 день", "три недели: Корни, Ствол, Крона"],
+  ["28 дней", "четыре недели: Освобождение, Опора, Наполнение, Свобода"],
   ["микробиота", "рецепты, ферменты, ритуалы"],
   ["Agatha", "ответы из доступных материалов"],
 ] as const;
@@ -93,8 +93,8 @@ export default function EditorialHero() {
           </p>
 
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-            <Pill as="a" href="/programs/blooming-garden" variant="primary">
-              Цветущий Сад
+            <Pill as="a" href="/programs/taste-of-freedom" variant="primary">
+              Вкус свободы
             </Pill>
             <Pill as="a" href="/pricing" variant="ghost">
               Открыть доступ
@@ -136,8 +136,8 @@ export default function EditorialHero() {
         <figure className="hero-portrait-shell" style={{ margin: 0 }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/generated/yara-editorial-hero-gpt-image-2.png"
-            alt="Яра Делл в светлой кухне с ботаническими деталями"
+            src="/generated/season3-hero-table.jpg"
+            alt="Летний стол программы «Вкус свободы»: льняная скатерть, пионы и сезонные овощи"
           />
           <span className="portrait-sheen" aria-hidden />
         </figure>

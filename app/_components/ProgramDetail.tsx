@@ -11,9 +11,240 @@ import {
 
 /* ============================================================
    ProgramDetail — hero + weekly rows. Reused by /programs/[slug].
+   Data-driven: PROGRAM_DETAILS holds a block per public program.
    ============================================================ */
 
-export function ProgramDetailHero() {
+type WeekTone = "rose" | "sage" | "lavender" | "peach";
+
+interface Week {
+  num: string;
+  kicker: string;
+  title: string;
+  lead: string;
+  bullets: string[];
+  tone: WeekTone;
+}
+
+interface GrowthNode {
+  title: string;
+  label: string;
+  body: string;
+}
+
+interface CommerceCard {
+  title: string;
+  body: string;
+}
+
+export interface ProgramDetailData {
+  kicker: string;
+  titleMain: string;
+  titleItalic: string;
+  lead: string;
+  checkoutSlug: string;
+  libraryHref: string;
+  facts: readonly (readonly [string, string])[];
+  commerceLead: string;
+  commerceCards: CommerceCard[];
+  growthAriaLabel: string;
+  growthNodes: GrowthNode[];
+  weeks: Week[];
+}
+
+export const PROGRAM_DETAILS: Record<string, ProgramDetailData> = {
+  "taste-of-freedom": {
+    kicker: "Цветок Жизни · Сезон 3 · 28 дней",
+    titleMain: "Вкус",
+    titleItalic: "свободы",
+    lead:
+      "Авторская программа Яры Делл: 28 дней живой кухни, ферментов, ритуалов, PDF-материалов и Agatha concierge в личном кабинете.",
+    checkoutSlug: "taste-of-freedom",
+    libraryHref: "/library/taste-of-freedom",
+    facts: [
+      ["длительность", "28 дней"],
+      ["формат", "PDF + библиотека"],
+      ["поддержка", "Agatha concierge"],
+      ["язык", "русский"],
+    ],
+    commerceLead:
+      "Участница видит программу в рабочем порядке: подготовка, день закупок, день заготовок, рецепт, ритуал, объяснение и источник для вопросов Agatha.",
+    commerceCards: [
+      {
+        title: "28 дней",
+        body: "Четыре недели — Освобождение, Опора, Наполнение, Свобода. Каждый день собран в порядке реальной кухни: тёплая вода до еды, тарелка начинается с клетчатки.",
+      },
+      {
+        title: "PDF + библиотека",
+        body: "Финальные материалы лежат в закрытой библиотеке: дни 1–28, дни закупок и заготовок, чайная и десертная карты, карта ферментации.",
+      },
+      {
+        title: "Agatha concierge",
+        body: "Вопросы по программе сначала идут к Agatha. Она отвечает по разрешённым материалам и не отдаёт контент вне доступа.",
+      },
+    ],
+    growthAriaLabel: "Ритм программы Вкус свободы",
+    growthNodes: [
+      {
+        title: "Освобождение",
+        label: "1 неделя",
+        body: "Мягкий старт: тёплая вода до еды, тарелка начинается с клетчатки, знакомые телу блюда.",
+      },
+      {
+        title: "Опора",
+        label: "2 неделя",
+        body: "Плотность и глубина вкуса: рийет, прозрачный фюме, медленное тушение — опора для дня.",
+      },
+      {
+        title: "Наполнение",
+        label: "3 неделя",
+        body: "Щедрость к себе: яркие текстуры и блюда, которые наполняют без тяжести.",
+      },
+      {
+        title: "Свобода",
+        label: "4 неделя",
+        body: "Сборка привычек: свобода выбора, выросшая из ежедневных решений в свою сторону.",
+      },
+    ],
+    weeks: [
+      {
+        num: "одна",
+        kicker: "Неделя первая",
+        title: "Освобождение",
+        lead:
+          "Мягкий старт: тело встречает знакомые блюда, собранные по логике программы — тёплая вода до еды, клетчатка первой, спокойный ритм утра.",
+        bullets: [
+          "фриттата со шпинатом и пармезаном",
+          "курица с оливками и капустной крошкой",
+          "полпетте в золотистом бульоне с бок-чой",
+        ],
+        tone: "rose",
+      },
+      {
+        num: "две",
+        kicker: "Неделя вторая",
+        title: "Опора",
+        lead:
+          "Программа набирает глубину: плотные вкусы, медленные техники и блюда, на которые можно опереться в середине пути.",
+        bullets: [
+          "рийет-тартин с корнишонами",
+          "кнели в прозрачном фюме",
+          "говядина по-сицилийски с апельсиновой гремолатой и фенхелем",
+        ],
+        tone: "sage",
+      },
+      {
+        num: "три",
+        kicker: "Неделя третья",
+        title: "Наполнение",
+        lead:
+          "Щедрость к себе: холодные и тёплые текстуры, яркие соусы и блюда, которые наполняют энергией без тяжести.",
+        bullets: [
+          "вителло-тоннато под тунцовым соусом",
+          "треска на гриле с цукини и соусом ромеско",
+          "яичные роллы с творогом и зеленью",
+        ],
+        tone: "lavender",
+      },
+      {
+        num: "четыре",
+        kicker: "Неделя четвёртая",
+        title: "Свобода",
+        lead:
+          "Финальная неделя: свобода выбора за столом, выросшая из четырёх недель ежедневных решений в свою сторону.",
+        bullets: [
+          "смёрребрёд с печенью трески и маринованным луком",
+          "скандинавское рыбное рагу с мидиями",
+          "бараньи отбивные с чимичурри и томатами черри",
+        ],
+        tone: "peach",
+      },
+    ],
+  },
+  "blooming-garden": {
+    kicker: "Цветущий Сад · Сезон 2 · 21 день",
+    titleMain: "Цветущий",
+    titleItalic: "Сад",
+    lead:
+      "Авторская программа Яры Делл: 21 день микробиоты, рецептов, ритуалов, PDF-материалов и Agatha concierge в личном кабинете.",
+    checkoutSlug: "blooming-garden-v2",
+    libraryHref: "/library/blooming-garden-v2",
+    facts: [
+      ["длительность", "21 день"],
+      ["формат", "PDF + библиотека"],
+      ["поддержка", "Agatha concierge"],
+      ["язык", "русский"],
+    ],
+    commerceLead:
+      "Участница видит программу в рабочем порядке: подготовка, неделя, день, рецепт, ритуал, объяснение и источник для вопросов Agatha.",
+    commerceCards: [
+      {
+        title: "21 день",
+        body: "Три недели с логикой микробиоты: Корни, Ствол, Крона. Каждый день собран в порядке реальной кухни, а не красивой таблицы.",
+      },
+      {
+        title: "PDF + библиотека",
+        body: "Финальные материалы лежат в закрытой библиотеке. Черновики, рабочие заметки и внутренние документы туда не попадают.",
+      },
+      {
+        title: "Agatha concierge",
+        body: "Вопросы по программе сначала идут к Agatha. Она отвечает по разрешённым материалам и не отдаёт контент вне доступа.",
+      },
+    ],
+    growthAriaLabel: "Ритм программы Цветущий Сад",
+    growthNodes: [
+      {
+        title: "Корни",
+        label: "1 неделя",
+        body: "Подготовка, желчный ритм, ферменты и первые устойчивые тарелки.",
+      },
+      {
+        title: "Ствол",
+        label: "2 неделя",
+        body: "Плотность вкуса, белок, полифенолы и блюда, которые держат день.",
+      },
+      {
+        title: "Крона",
+        label: "3 неделя",
+        body: "Лёгкость, ясность и финальная сборка привычек без марафонной суеты.",
+      },
+    ],
+    weeks: [
+      {
+        num: "одна",
+        kicker: "Неделя первая",
+        title: "Корни",
+        lead:
+          "Глубинная подготовка: разгрузка печени, активация желчного, мягкий старт. Тарелка собирается из того, что уже знакомо телу — крестоцветные, бульон, лимон, имбирь.",
+        bullets: ["золотой костный бульон", "карамелизованная цветная капуста", "уксусный эликсир до еды"],
+        tone: "rose",
+      },
+      {
+        num: "две",
+        kicker: "Неделя вторая",
+        title: "Ствол",
+        lead:
+          "Расцвет и плотность вкуса: щёчки тушёные, осьминог, путанеска, тирамису на маскарпоне. Программа набирает глубину — микробиота уже встретила перемены и готова к большему.",
+        bullets: ["щёчки в винном соусе", "осьминог по-средиземноморски", "тирамису без сахара"],
+        tone: "sage",
+      },
+      {
+        num: "три",
+        kicker: "Неделя третья",
+        title: "Крона",
+        lead:
+          "Финальная неделя — лёгкость и ясность. Чёрная треска в мисо, гранат, фенхель, японские нотки. Микробиота к этому моменту умеет работать с полифенолами на полную.",
+        bullets: [
+          "чёрная треска в мисо",
+          "гранат и фенхель",
+          "панна-котта на кокосовых сливках",
+        ],
+        tone: "lavender",
+      },
+    ],
+  },
+};
+
+export function ProgramDetailHero({ detail }: { detail: ProgramDetailData }) {
   return (
     <section
       className="program-detail-hero v31-gloss-surface"
@@ -68,7 +299,7 @@ export function ProgramDetailHero() {
         </Link>
 
         <div style={{ marginTop: 24 }}>
-          <Kicker color="var(--rose)">Цветущий Сад · Сезон 2 · 21 день</Kicker>
+          <Kicker color="var(--rose)">{detail.kicker}</Kicker>
         </div>
 
         <h1
@@ -82,8 +313,10 @@ export function ProgramDetailHero() {
             maxWidth: "10ch",
           }}
         >
-          Цветущий{" "}
-          <em style={{ color: "var(--rose)", fontWeight: 500 }}>Сад</em>
+          {detail.titleMain}{" "}
+          <em style={{ color: "var(--rose)", fontWeight: 500 }}>
+            {detail.titleItalic}
+          </em>
         </h1>
         <p
           style={{
@@ -96,12 +329,11 @@ export function ProgramDetailHero() {
             margin: "0 0 40px",
           }}
         >
-          Авторская программа Яры Делл: 21 день микробиоты, рецептов,
-          ритуалов, PDF-материалов и Agatha concierge в личном кабинете.
+          {detail.lead}
         </p>
         <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
-          <CheckoutButton />
-          <Pill as="a" href="/library/blooming-garden-v2" variant="ghost">
+          <CheckoutButton programSlug={detail.checkoutSlug} />
+          <Pill as="a" href={detail.libraryHref} variant="ghost">
             В библиотеку
           </Pill>
         </div>
@@ -116,14 +348,7 @@ export function ProgramDetailHero() {
             color: "var(--ink)",
           }}
         >
-          {(
-            [
-              ["длительность", "21 день"],
-              ["формат", "PDF + библиотека"],
-              ["поддержка", "Agatha concierge"],
-              ["язык", "русский"],
-            ] as const
-          ).map(([k, v]) => (
+          {detail.facts.map(([k, v]) => (
             <div key={k}>
               <div
                 style={{
@@ -148,29 +373,16 @@ export function ProgramDetailHero() {
   );
 }
 
-export function ProgramCommerceSection() {
+export function ProgramCommerceSection({ detail }: { detail: ProgramDetailData }) {
   return (
     <PlatformBand tone="cream">
       <SectionIntro
         kicker="Что входит"
         title="Не просто доступ к файлам. Понятный маршрут на каждый день."
-        lead="Участница видит программу в рабочем порядке: подготовка, неделя, день, рецепт, ритуал, объяснение и источник для вопросов Agatha."
+        lead={detail.commerceLead}
       />
       <PlatformGrid min={280}>
-        {[
-          {
-            title: "21 день",
-            body: "Три недели с логикой микробиоты: Корни, Ствол, Крона. Каждый день собран в порядке реальной кухни, а не красивой таблицы.",
-          },
-          {
-            title: "PDF + библиотека",
-            body: "Финальные материалы лежат в закрытой библиотеке. Черновики, рабочие заметки и внутренние документы туда не попадают.",
-          },
-          {
-            title: "Agatha concierge",
-            body: "Вопросы по программе сначала идут к Agatha. Она отвечает по разрешённым материалам и не отдаёт контент вне доступа.",
-          },
-        ].map((item) => (
+        {detail.commerceCards.map((item) => (
           <EditorialPanel key={item.title} tone="cream">
             <SoftTag>{item.title}</SoftTag>
             <p
@@ -188,33 +400,15 @@ export function ProgramCommerceSection() {
           </EditorialPanel>
         ))}
       </PlatformGrid>
-      <ProgramGrowthPath />
+      <ProgramGrowthPath detail={detail} />
     </PlatformBand>
   );
 }
 
-export function ProgramGrowthPath() {
-  const nodes = [
-    {
-      title: "Корни",
-      label: "1 неделя",
-      body: "Подготовка, желчный ритм, ферменты и первые устойчивые тарелки.",
-    },
-    {
-      title: "Ствол",
-      label: "2 неделя",
-      body: "Плотность вкуса, белок, полифенолы и блюда, которые держат день.",
-    },
-    {
-      title: "Крона",
-      label: "3 неделя",
-      body: "Лёгкость, ясность и финальная сборка привычек без марафонной суеты.",
-    },
-  ] as const;
-
+export function ProgramGrowthPath({ detail }: { detail: ProgramDetailData }) {
   return (
-    <div className="program-growth-path" aria-label="Ритм программы Цветущий Сад">
-      {nodes.map((node) => (
+    <div className="program-growth-path" aria-label={detail.growthAriaLabel}>
+      {detail.growthNodes.map((node) => (
         <div className="program-growth-node" key={node.title}>
           <div
             style={{
@@ -259,56 +453,13 @@ export function ProgramGrowthPath() {
   );
 }
 
-type WeekTone = "rose" | "sage" | "lavender";
-interface Week {
-  num: string;
-  kicker: string;
-  title: string;
-  lead: string;
-  bullets: string[];
-  tone: WeekTone;
-}
-
-export const WEEKS: Week[] = [
-  {
-    num: "одна",
-    kicker: "Неделя первая",
-    title: "Корни",
-    lead:
-      "Глубинная подготовка: разгрузка печени, активация желчного, мягкий старт. Тарелка собирается из того, что уже знакомо телу — крестоцветные, бульон, лимон, имбирь.",
-    bullets: ["золотой костный бульон", "карамелизованная цветная капуста", "уксусный эликсир до еды"],
-    tone: "rose",
-  },
-  {
-    num: "две",
-    kicker: "Неделя вторая",
-    title: "Ствол",
-    lead:
-      "Расцвет и плотность вкуса: щёчки тушёные, осьминог, путанеска, тирамису на маскарпоне. Программа набирает глубину — микробиота уже встретила перемены и готова к большему.",
-    bullets: ["щёчки в винном соусе", "осьминог по-средиземноморски", "тирамису без сахара"],
-    tone: "sage",
-  },
-  {
-    num: "три",
-    kicker: "Неделя третья",
-    title: "Крона",
-    lead:
-      "Финальная неделя — лёгкость и ясность. Чёрная треска в мисо, гранат, фенхель, японские нотки. Микробиота к этому моменту умеет работать с полифенолами на полную.",
-    bullets: [
-      "чёрная треска в мисо",
-      "гранат и фенхель",
-      "панна-котта на кокосовых сливках",
-    ],
-    tone: "lavender",
-  },
-];
-
 export function WeekRow({ week, index }: { week: Week; index: number }) {
   const flipped = index % 2 === 1;
   const washes: Record<WeekTone, string> = {
     rose: "var(--rose-wash)",
     sage: "var(--sage-wash)",
     lavender: "var(--lavender-wash)",
+    peach: "var(--peach-wash)",
   };
   return (
     <section
@@ -397,7 +548,7 @@ export function WeekRow({ week, index }: { week: Week; index: number }) {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={
-              week.tone === "rose"
+              week.tone === "rose" || week.tone === "peach"
                 ? "/peonies/yara-peony-bud-alpha.png"
                 : week.tone === "sage"
                   ? "/peonies/yara-peony-branch-alpha.png"

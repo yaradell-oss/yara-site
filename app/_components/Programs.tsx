@@ -25,34 +25,34 @@ export interface Program {
 
 export const PROGRAMS: Program[] = [
   {
-    id: "blooming-garden",
-    href: "/programs/blooming-garden",
-    kicker: "Текущий запуск · 21 день",
-    title: "Цветущий Сад",
-    italicWord: "Сад",
+    id: "taste-of-freedom",
+    href: "/programs/taste-of-freedom",
+    kicker: "Текущий запуск · Сезон 3 · 28 дней",
+    title: "Вкус свободы",
+    italicWord: "свободы",
     lead:
-      "Двадцать один день внимания к микробиоте: утренние ритуалы, медленная кухня и биохимия, объяснённая человеческим языком.",
-    commercial: "Первый коммерческий сезон платформы: checkout, библиотека, Agatha concierge.",
+      "Двадцать восемь дней программы «Цветок Жизни»: живая кухня с ферментами и клетчаткой, желчный ритм, сон и мягкая антипаразитарная линия — четыре недели от Освобождения к Свободе.",
+    commercial: "Текущий сезон платформы: checkout, библиотека, Agatha concierge.",
     state: "доступ открыт после оплаты",
-    wash: "var(--rose-wash)",
-    tone: "rose",
-    rotation: -6,
-    seasonMark: "II",
-  },
-  {
-    id: "root-cleanse",
-    href: "/pricing",
-    kicker: "Будущий запуск · скоро",
-    title: "Корневое очищение",
-    italicWord: "очищение",
-    lead:
-      "Антипаразитарная программа на травах и специях. Без медикаментов, без жёстких чисток — мудрость травницы в твоей кухне. Старт 15 июня.",
-    commercial: "Будущий запуск: лист ожидания, прогрев, ранний доступ.",
-    state: "скоро",
     wash: "var(--sage-wash)",
     tone: "sage",
     rotation: 6,
     seasonMark: "III",
+  },
+  {
+    id: "blooming-garden",
+    href: "/programs/blooming-garden",
+    kicker: "Сезон 2 · прошлый запуск · 21 день",
+    title: "Цветущий Сад",
+    italicWord: "Сад",
+    lead:
+      "Двадцать один день внимания к микробиоте: утренние ритуалы, медленная кухня и биохимия, объяснённая человеческим языком.",
+    commercial: "Первый коммерческий сезон платформы: библиотека и материалы остаются доступными.",
+    state: "архив сезона",
+    wash: "var(--rose-wash)",
+    tone: "rose",
+    rotation: -6,
+    seasonMark: "II",
   },
   {
     id: "flower-of-life",
@@ -97,7 +97,7 @@ export function ProgramRow({
 
   const words = program.title.split(" ");
   const edgeSrc =
-    program.id === "root-cleanse"
+    program.id === "taste-of-freedom"
       ? "/peonies/yara-peony-branch-alpha.png"
       : program.id === "blooming-garden"
         ? "/peonies/yara-peony-single-alpha.png"
@@ -215,7 +215,7 @@ export function ProgramRow({
             src={
               program.id === "blooming-garden"
                 ? "/peonies/yara-peony-single-alpha.png"
-                : program.id === "root-cleanse"
+                : program.id === "taste-of-freedom"
                   ? "/peonies/yara-peony-branch-alpha.png"
                   : "/peonies/yara-peony-bud-alpha.png"
             }
@@ -223,7 +223,7 @@ export function ProgramRow({
             aria-hidden
             style={{
               position: "absolute",
-              width: program.id === "root-cleanse" ? "76%" : "60%",
+              width: program.id === "taste-of-freedom" ? "76%" : "60%",
               top: "50%",
               left: "50%",
               transform: `translate(-50%, -50%) rotate(${program.rotation}deg)`,

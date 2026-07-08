@@ -3,24 +3,21 @@ import Footer from "../../_components/Footer";
 import Nav from "../../_components/Nav";
 import NewsletterBand from "../../_components/NewsletterBand";
 import {
+  PROGRAM_DETAILS,
   ProgramCommerceSection,
   ProgramDetailHero,
-  WEEKS,
   WeekRow,
 } from "../../_components/ProgramDetail";
 
 /* ============================================================
-   Dynamic program detail page. Currently only "blooming-garden"
-   (Цветущий Сад · Сезон 2) is fully designed — other programs 404
-   here until their content lands.
+   Dynamic program detail page, data-driven via PROGRAM_DETAILS.
 
    We use a Latin slug for the URL because Next.js 16's static-
    export pipeline chokes when serializing Cyrillic path segments
    at build time (InvalidCharacterError in prerender).
    ============================================================ */
 
-const KNOWN_SLUGS = ["blooming-garden"] as const;
-type KnownSlug = (typeof KNOWN_SLUGS)[number];
+const KNOWN_SLUGS = Object.keys(PROGRAM_DETAILS);
 
 export function generateStaticParams() {
   return KNOWN_SLUGS.map((slug) => ({ slug }));
@@ -32,6 +29,13 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
+  if (slug === "taste-of-freedom") {
+    return {
+      title: "Вкус свободы · Сезон 3 — Яра Делл",
+      description:
+        "Авторская программа Яры Делл: двадцать восемь дней живой кухни, ферментов и ритуалов — четыре недели от Освобождения к Свободе.",
+    };
+  }
   if (slug === "blooming-garden") {
     return {
       title: "Цветущий Сад · Сезон 2 — Яра Делл",
@@ -48,7 +52,8 @@ export default async function ProgramDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  if (!KNOWN_SLUGS.includes(slug as KnownSlug)) {
+  const detail = PROGRAM_DETAILS[slug];
+  if (!detail) {
     notFound();
   }
 
@@ -56,10 +61,10 @@ export default async function ProgramDetailPage({
     <>
       <Nav />
       <main>
-        <ProgramDetailHero />
-        <ProgramCommerceSection />
-        {WEEKS.map((week, i) => (
-          <WeekRow key={week.num} week={week} index={i} />
+        <ProgramDetailHero detail={detail} />
+        <ProgramCommerceSection detail={detail} />
+        {detail.weeks.map((week, i) => (
+          <WeekRow key={week.title} week={week} index={i} />
         ))}
         <NewsletterBand />
       </main>

@@ -11,6 +11,7 @@ import {
 } from "../../_components/platform/PlatformPrimitives";
 import {
   BLOOMING_GARDEN_DAYS,
+  TASTE_OF_FREEDOM_DAYS,
   getContentForProgram,
   getProgramOffer,
   PROGRAM_OFFERS,
@@ -74,7 +75,10 @@ export default async function ProgramLibraryPage({
                 lead="Это первый прототип закрытой библиотеки: после загрузки финальных PDF каждая карточка станет входом в конкретный материал, рецепт или ритуал."
               />
               <PlatformGrid min={300}>
-                {BLOOMING_GARDEN_DAYS.map((week) => (
+                {(program.slug === "taste-of-freedom"
+                  ? TASTE_OF_FREEDOM_DAYS
+                  : BLOOMING_GARDEN_DAYS
+                ).map((week) => (
                   <div
                     key={week.week}
                     className="library-access-card"
