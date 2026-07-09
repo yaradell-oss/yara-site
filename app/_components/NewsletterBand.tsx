@@ -104,7 +104,17 @@ export default function NewsletterBand() {
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              if (email) setSent(true);
+              if (!email) return;
+              void fetch("/api/leads", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  kind: "newsletter",
+                  email,
+                  path: window.location.pathname,
+                }),
+              }).catch(() => {});
+              setSent(true);
             }}
             style={{
               display: "flex",

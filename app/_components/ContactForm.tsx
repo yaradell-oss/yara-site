@@ -102,6 +102,18 @@ export default function ContactForm() {
           <form
             onSubmit={(e) => {
               e.preventDefault();
+              if (!form.email) return;
+              void fetch("/api/leads", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  kind: "contact",
+                  email: form.email,
+                  name: form.name,
+                  message: form.message,
+                  path: window.location.pathname,
+                }),
+              }).catch(() => {});
               setSent(true);
             }}
             style={{ display: "flex", flexDirection: "column", gap: 14 }}
